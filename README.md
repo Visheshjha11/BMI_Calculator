@@ -35,5 +35,6 @@ This project is licensed under the MIT License.
 ## Contact
 For any inquiries, please contact [your-email@example.com] or visit [your-website.com].
 Modified line in conflict-demo branch
+<<<<<<< HEAD
 
-Modified line in main branch
+Modified line in last time main branch
