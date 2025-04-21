@@ -1,45 +1,51 @@
-/* Global Styles */
+/* Base Styles */
 body {
   font-family: sans-serif;
-  box-sizing:border-box;
+  box-sizing: border-box;
   max-width: 800px;
-  margin: auto;
+  margin: 30px auto; /* Increased margin */
   padding: 20px;
   border-radius: 10px;
-  background-color: black;
+  background-color: #1e1e2f; /* Changed from black to deep navy */
+  color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease-in-out;
 }
-.title{
-  text-align:center;
-  margin-bottom:20px;
+
+h1 {
+  font-size: 1.9rem;
+  text-align: center;
 }
 
+h2, h3 {
+  font-size: 1.8rem;
+  color: #153210;
+}
 
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Header */
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   background-color: #d87834;
   padding: 10px 20px;
-  flex-wrap:wrap;
   color: white;
+  border-radius: 200px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  boder-radius:200px;
-  margin-bottom:5%;
+  margin-bottom: 5%;
 }
 
 .logo img {
   height: 50px;
+}
 
-}
-.header{
-  padding-bottom: 10px;
-  height: 50px;
-  border-radius: 200px;
-  padding-bottom: 10px;
-  margin-bottom: 5%;
-}
+/* Navigation */
 .nav-bar {
   display: flex;
   align-items: center;
@@ -56,46 +62,35 @@ body {
   margin: 0 15px;
 }
 
-.nav-links a:hover {
+.nav-links a {
+  color: white;
   text-decoration: none;
-  color: #ffd6b3;
-  font-size: 16px;
   transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
-  color: blue;
+  color: #ffd6b3;
 }
 
-h1 {
-  font-size: 1.9rem;
-}
-h2 {
-  font-size: 1.8rem;
-  color: #153210;
-}
-h3 {
-  font-size: 1.8rem;
-  color: #153210;
-}
+/* Container */
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
-  padding: 20px;
   background-color: rgb(221, 127, 60);
+  padding: 20px;
+  margin: auto;
+  margin-bottom: 20px;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 540px;
-  margin: auto;
   padding-right: 2px;
 }
 
 .container label {
-  margin-bottom: 10px;
   font-size: 1.2rem;
+  margin-bottom: 10px;
 }
 
 .container input,
@@ -108,6 +103,7 @@ h3 {
   max-width: 500px;
 }
 
+/* Button */
 .calculate button {
   padding: 10px 20px;
   background-color: #509c44;
@@ -123,37 +119,40 @@ h3 {
   background-color: #407a36;
 }
 
+/* Result Display */
 .result {
   font-size: 2rem;
   color: #007bff;
   text-align: center;
 }
 
-.paragraph ul {
-  text-align: left;
-}
+/* Paragraph Section */
 .paragraph {
   background-color: #509c44;
   color: white;
-  padding: 20px;
+  padding: 20px 20px 0;
   border-radius: 10px;
   margin-top: 20px;
-  padding-top: 5px;
+  text-align: left;
 }
+
 .paragraph p {
-  line-height: 1.6;
   font-size: 1rem;
+  line-height: 1.6;
   margin-bottom: 10px;
 }
+
+/* Calculation Section */
 .calculation {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   font-size: large;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Image */
 .responsive-img {
   width: 100%;
   height: auto;
@@ -161,41 +160,64 @@ h3 {
   margin-top: 20px;
 }
 
-/* Media Queries for Responsiveness */
+/* About Section */
+.about-section {
+  background-color: #f9f9f9;
+  color: #333;
+  padding: 60px 20px;
+  font-family: "Arial", sans-serif;
+  text-align: center;
+}
 
-/* Mobile Devices (Portrait) */
+.about-section .container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.about-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #007bff;
+}
+
+.about-section p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+/* Media Queries */
+
+/* Mobile Devices */
 @media (max-width: 500px) {
   h1 {
     font-size: 1.5rem;
-    text-align: center; /* Center-aligns header text */
   }
 
   .container {
     padding: 10px;
-    margin: 0 auto; /* Centers container on the page */
   }
 
   .container input,
   .container select {
     width: 100%;
-    max-width: 100%;
-    padding: 10px; /* Adds padding for better touch usability */
-    box-sizing: border-box; /* Ensures padding doesn’t affect width */
+    padding: 10px;
+    box-sizing: border-box;
   }
 
   .calculate button {
     padding: 12px 25px;
-    width: 100%; /* Ensures button takes up full width */
+    width: 100%;
   }
 
   .paragraph {
     padding: 15px;
-    text-align: center; /* Aligns text for readability on small screens */
+    text-align: center;
   }
 
   .paragraph p {
     font-size: 0.9rem;
-    line-height: 1.5; /* Improves readability */
+    line-height: 1.5;
   }
 }
 
@@ -212,7 +234,6 @@ h3 {
   .container input,
   .container select {
     width: 100%;
-    max-width: 500px;
   }
 
   .calculate button {
@@ -223,28 +244,4 @@ h3 {
     padding: 20px;
   }
 }
-/* About Section Styling */
-.about-section {
-  background-color: #f9f9f9; /* Light background */
-  color: #333; /* Dark text */
-  padding: 60px 20px;
-  font-family: "Arial", sans-serif;
-  text-align: center;
-}
 
-.about-section .container {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.about-section h2 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  color: #007bff; /* Accent color */
-}
-
-.about-section p {
-  font-size: 1rem;
-  line-height: 1.6;
-  margin-bottom: 15px;
-}
