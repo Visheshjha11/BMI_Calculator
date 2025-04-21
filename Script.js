@@ -28,9 +28,6 @@ form.addEventListener("submit", (e) => {
   // Calculate BMI
   const bmi = (weight / ((height / 100) ** 2)).toFixed(2);
 
-  // Show result
-  results.innerHTML = `Your BMI is: <strong>${bmi}</strong>`;
-
   // Provide BMI category feedback
   const bmiValue = parseFloat(bmi);
   let feedback = "";
@@ -44,6 +41,7 @@ form.addEventListener("submit", (e) => {
   } else {
     feedback = "You are obese.";
   }
+  results.innerHTML = `Your BMI is: <strong>${bmi}</strong>`;
 
   message.innerHTML = feedback;
 });
