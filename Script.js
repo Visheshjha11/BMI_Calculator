@@ -2,51 +2,49 @@ const form = document.querySelector("#bmi-form");
 const results = document.querySelector("#results");
 const message = document.querySelector("#message");
 
-// Listen for form submission
-form.addEventListener("submit", function (e) {
+const getInputValue = (selector) => document.querySelector(selector).value.trim();
+
+const isValidNumber = (value) => !isNaN(value) && value > 0;
+
+const showError = (text) => {
+  results.innerHTML = text;
+  message.innerHTML = "";
+};
+
+form.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  // Get input values
-  const height = parseInt(document.querySelector("#height").value);
-  const weight = parseInt(document.querySelector("#weight").value);
-  const age = parseInt(document.querySelector("#age").value);
-  const gender = document.querySelector("#gender").value;
+  const height = parseInt(getInputValue("#height"));
+  const weight = parseInt(getInputValue("#weight"));
+  const age = parseInt(getInputValue("#age"));
+  const gender = getInputValue("#gender");
 
-  // Validate inputs
-  if (isNaN(height) || height <= 0) {
-    results.innerHTML = "Please provide a valid height.";
-    return;
-  }
-
-  if (isNaN(weight) || weight <= 0) {
-    results.innerHTML = "Please provide a valid weight.";
-    return;
-  }
-
-  if (isNaN(age) || age <= 0) {
-    results.innerHTML = "Please provide a valid age.";
-    return;
-  }
-
-  if (!gender) {
-    results.innerHTML = "Please select your gender.";
-    return;
-  }
+  // Input validation
+  if (!isValidNumber(height)) return showError("Please provide a valid height.");
+  if (!isValidNumber(weight)) return showError("Please provide a valid weight.");
+  if (!isValidNumber(age)) return showError("Please provide a valid age.");
+  if (!gender) return showError("Please select your gender.");
 
   // Calculate BMI
-  const bmi = (weight / ((height * height) / 10000)).toFixed(2); // Convert height from cm to m
+  const bmi = (weight / ((height / 100) ** 2)).toFixed(2);
 
-  // Display the BMI result
+  // Show result
   results.innerHTML = `Your BMI is: <strong>${bmi}</strong>`;
 
-  // Display feedback based on BMI
-  if (bmi < 18.5) {
-    message.innerHTML = "You are underweight.";
-  } else if (bmi >= 18.5 && bmi <= 24.9) {
-    message.innerHTML = "You have a normal weight.";
-  } else if (bmi >= 25 && bmi <= 29.9) {
-    message.innerHTML = "You are overweight.";
+  // Provide BMI category feedback
+  const bmiValue = parseFloat(bmi);
+  let feedback = "";
+
+  if (bmiValue < 18.5) {
+    feedback = "You are underweight.";
+  } else if (bmiValue <= 24.9) {
+    feedback = "You have a normal weight.";
+  } else if (bmiValue <= 29.9) {
+    feedback = "You are overweight.";
   } else {
-    message.innerHTML = "You are obese.";
+    feedback = "You are obese.";
   }
+
+  message.innerHTML = feedback;
 });
+
