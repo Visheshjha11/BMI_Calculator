@@ -1,35 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
- <head>
-  <!-- Meta tags for character set and viewport settings -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <!-- Open Graph Meta Tags for social sharing -->
-  <meta property="og:title" content="BMI Calculator" />
-  <meta property="og:type" content="website" />
-  <meta property="og:description" content="A Body Mass Index (BMI) Calculator to help you monitor your health." />
-  <meta property="og:image" content="path_to_image.jpg" /> <!-- Optional: Add a relevant image URL for social sharing -->
-  <meta property="og:url" content="https://yourwebsite.com/bmi-calculator" />
-  
-  <!-- Page description for better SEO -->
-  <meta name="description" content="A simple and easy-to-use BMI Calculator to calculate your Body Mass Index and assess your health status." />
-  
-  <!-- Favicon for website icon -->
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
-
-  <!-- Link to external CSS stylesheet -->
-  <link rel="stylesheet" href="style.css" />
-
-  <!-- Accessibility improvements -->
-  <meta name="robots" content="index, follow" /> <!-- Allow search engines to index and follow the site -->
-
-  <!-- Title of the page -->
-  <title>BMI Calculator</title>
-</head>
-
-
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -77,6 +48,28 @@
         placeholder="Enter your weight"
         required
       />
+
+      <!-- Gender Field -->
+      <label for="gender">Gender: <span class="mandatory">*</span></label>
+      <select name="gender" id="gender" required>
+        <option value="" disabled selected>Select your gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <!-- Submit Button -->
+      <button type="submit">Calculate BMI</button>
+    </form>
+
+    <!-- Result Display -->
+    <div id="result" class="result-display"></div>
+  </div>
+
+  <!-- JavaScript for BMI Logic -->
+  <script src="script.js"></script>
+</body>
+</html>
 
       <!-- Gender Field -->
       <label for="gender">Gender: <span class="mandatory">*</span></label>
