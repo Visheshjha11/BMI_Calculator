@@ -71,6 +71,19 @@
 </body>
 </html>
 
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BMI Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Body Mass Index (BMI) Calculator</h1>
+    
+    <form id="bmi-form">
       <!-- Gender Field -->
       <label for="gender">Gender: <span class="mandatory">*</span></label>
       <select name="gender" id="gender" required>
@@ -79,6 +92,14 @@
         <option value="Female">Female</option>
         <option value="Other">Other</option>
       </select>
+
+      <!-- Height Field -->
+      <label for="height">Height (in cm): <span class="mandatory">*</span></label>
+      <input type="number" id="height" name="height" required min="50" max="300" />
+
+      <!-- Weight Field -->
+      <label for="weight">Weight (in kg): <span class="mandatory">*</span></label>
+      <input type="number" id="weight" name="weight" required min="10" max="500" />
 
       <!-- Submit Button -->
       <button type="submit">Calculate BMI</button>
@@ -92,6 +113,7 @@
   <script src="script.js"></script>
 </body>
 </html>
+
 
 
         <!-- Age Field -->
