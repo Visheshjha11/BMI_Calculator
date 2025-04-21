@@ -1,6 +1,7 @@
 /* Global Styles */
 body {
   font-family: sans-serif;
+  box-sizing:border-box;
   max-width: 800px;
   margin: auto;
   padding: 20px;
@@ -11,6 +12,7 @@ body {
 }
 .title{
   text-align:center;
+  margin-bottom:20px;
 }
 
 
@@ -20,8 +22,11 @@ body {
   justify-content: space-between;
   background-color: #d87834;
   padding: 10px 20px;
+  flex-wrap:wrap;
   color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  boder-radius:200px;
+  margin-bottom:5%;
 }
 
 .logo img {
@@ -51,9 +56,9 @@ body {
   margin: 0 15px;
 }
 
-.nav-links a {
+.nav-links a:hover {
   text-decoration: none;
-  color: white;
+  color: #ffd6b3;
   font-size: 16px;
   transition: color 0.3s ease;
 }
