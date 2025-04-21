@@ -29,45 +29,77 @@
 </head>
 
 
-  <body>
-    <h1>BMI Calculator</h1>
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BMI Calculator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <h1>BMI Calculator</h1>
 
-    <!-- Main Form for BMI Calculator -->
-    <header class="header">
-      <div class="logo">
-        <img src="logobmi.png" alt="logo for BMI calculater" />
-      </div>
-      <nav class="nav-bar">
-        <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="calculator.html">Calculator</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
-          <li><a href="about.html">About Us</a></li>
-        </ul>
-      </nav>
-    </header>
-    <div class="container">
-      <form id="bmi-form">
-        <!-- Height Field -->
-        <label for="height"
-          >Height (cm): <span class="mandatory">*</span></label
-        >
-        <input
-          type="number"
-          id="height"
-          name="Height"
-          placeholder="Enter your height"
-          required
-        />
+  <!-- Header with Logo and Navigation -->
+  <header class="header">
+    <div class="logo">
+      <img src="logobmi.png" alt="Logo for BMI Calculator" />
+    </div>
+    <nav class="nav-bar">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="calculator.html">Calculator</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="about.html">About Us</a></li>
+      </ul>
+    </nav>
+  </header>
 
-        <!-- Gender Field -->
-        <label for="gender">Gender: <span class="mandatory">*</span></label>
-        <select name="gender" id="gender" required>
-          <option value="" disabled selected>Select your Gender</option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Other">Other</option>
-        </select>
+  <!-- BMI Calculator Form -->
+  <div class="container">
+    <form id="bmi-form">
+      <!-- Height Field -->
+      <label for="height">Height (cm): <span class="mandatory">*</span></label>
+      <input
+        type="number"
+        id="height"
+        name="height"
+        placeholder="Enter your height"
+        required
+      />
+
+      <!-- Weight Field -->
+      <label for="weight">Weight (kg): <span class="mandatory">*</span></label>
+      <input
+        type="number"
+        id="weight"
+        name="weight"
+        placeholder="Enter your weight"
+        required
+      />
+
+      <!-- Gender Field -->
+      <label for="gender">Gender: <span class="mandatory">*</span></label>
+      <select name="gender" id="gender" required>
+        <option value="" disabled selected>Select your gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <!-- Submit Button -->
+      <button type="submit">Calculate BMI</button>
+    </form>
+
+    <!-- Result Display -->
+    <div id="result" class="result-display"></div>
+  </div>
+
+  <!-- JavaScript for BMI Logic -->
+  <script src="script.js"></script>
+</body>
+</html>
+
 
         <!-- Age Field -->
         <label for="age">Age: <span class="mandatory">*</span></label>
