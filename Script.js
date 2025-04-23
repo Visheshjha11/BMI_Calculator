@@ -55,15 +55,25 @@ form.addEventListener("submit", (e) => {
   const gender = getInputValue("#gender");
 
   // Input validation
+  if (!height || height <= 0 || !weight || weight <= 0) {
+  message.innerHTML = "<p style='color: red;'>Please enter valid height and weight values.</p>";
+  return;
+}
   if (!isValidNumber(height) || height > 300) return showError("Please provide a valid height in cm (e.g., 150 - 250).");
   if (!isValidNumber(weight) || weight > 500) return showError("Please provide a valid weight in kg (e.g., 30 - 300).");
   if (!isValidNumber(age) || age < 5 || age > 120) return showError("Please provide a valid age.");
   if (!gender) return showError("Please select your gender.");
 
   // Calculate BMI
-  const bmi = (weight / ((height / 100) ** 2)).toFixed(2);
+  const bmi = (weight / ((height / 100) ** 2)).toFixed(1);
   const bmiValue = parseFloat(bmi);
   const category = getBMICategory(bmiValue);
+  results.innerHTML = `
+  <div style="color: ${category.color}">
+    <p><strong>${category.status} ${category.emoji}</strong></p>
+    <p>BMI: ${bmi}</p>
+    <p>${category.note}</p>
+  </div>;
 
   // Display Result
   results.innerHTML = `
