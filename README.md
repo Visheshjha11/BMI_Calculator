@@ -2,7 +2,7 @@
 
 ## Overview
 
-The BMI Calculator is a simple, yet powerful web application designed to help users calculate their Body Mass Index (BMI) based on their height and weight. This tool is an excellent resource for anyone interested in tracking their body composition and understanding whether they are within a healthy weight range.
+A simple, user-friendly web application that calculates Body Mass Index (BMI) using HTML, CSS, and JavaScript. This tool helps users quickly assess their body composition based on height and weight measurements.And give a quick estimate of whether your weight is appropriate for your height.
 
 ## Features
 
@@ -30,10 +30,6 @@ The BMI Calculator is a simple, yet powerful web application designed to help us
 
 - A modern web browser (Chrome, Firefox, Safari, Edge)
 - Text editor (VS Code, Sublime Text, etc.)
-- No server-side technologies are required for this project, as it's a static web app.
-- An active internet connection is required to view the live demo version hosted online or to clone and run the project locally.
-
-
 
 ### Installation
 
@@ -56,10 +52,32 @@ The BMI Calculator is a simple, yet powerful web application designed to help us
 3. Click the "Calculate BMI" button
 4. View your BMI and corresponding weight category
 
-## BMI Categories
+## 🐛 How to Raise an Issue
 
-docs: add BMI classification with health considerations to README
+If you encounter a bug, have a feature request, or want to ask a question, we’d love to hear from you! Here's how to raise an issue properly to help us help you faster:
 
+1. **Check for Duplicates**  
+   Before creating a new issue, please [search existing issues](../../issues) to see if someone has already reported the same problem or idea.
+
+2. **Use the Template**  
+   When creating an issue, please fill out the provided template as completely as possible. This ensures we have all the info we need from the start.
+
+3. **Be Clear and Descriptive**  
+   - **Title**: Use a concise and descriptive title.  
+   - **Description**: Explain the issue or request in detail. Include steps to reproduce, expected vs. actual behavior, and any relevant context.
+
+4. **Include Logs or Screenshots**  
+   If applicable, attach logs, error messages, or screenshots to help illustrate the problem.
+
+5. **Mention the Environment**  
+   Include details like:
+   - OS and version
+   - Browser or runtime
+   - App version or Git commit hash
+   - Any relevant configuration
+
+6. **Stay Respectful and Constructive**  
+   We’re all here to improve the project together. Kindness and clarity go a long way! ❤️
 
 
 The application is fully responsive and provides an optimal viewing experience across a wide range of devices, from mobile phones to desktop computers.
@@ -89,7 +107,13 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Vishesh Jha - visheshjha456@gmail.com
 
+#Colaborators🤝
+
 Jatin - jatinsaini.7404312173@gmail.com
+
+Manthan dhingra -  Dhingramanthan9@gmail.com
+
+Jatin Vohra - Vohrajatin09@gmail.com
 
 Project Link: https://github.com/Visheshjha11/BMI_Calculator
 
@@ -98,6 +122,20 @@ Project Link: https://github.com/Visheshjha11/BMI_Calculator
 - [MDN Web Docs](https://developer.mozilla.org/)
 - [W3Schools](https://www.w3schools.com/)
 - Inspiration from various health and fitness applications
+
+## 📚 Sources & References
+
+This BMI Calculator is based on standard health guidelines and formulas widely accepted in the medical and health community. Below are the key sources used in this project:
+
+- [World Health Organization (WHO) - BMI Classification](https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight)  
+  Provides official BMI categories and global health standards.
+
+- [CDC - About Adult BMI](https://www.cdc.gov/healthyweight/assessing/bmi/adult_bmi/index.html)  
+  Explains how BMI is calculated and interpreted for adults.
+
+- [NIH - National Heart, Lung, and Blood Institute BMI Calculator](https://www.nhlbi.nih.gov/health/educational/lose_wt/BMI/bmicalc.htm)  
+  Offers details on the formula and health risk categories.
+
 
 ---
 
