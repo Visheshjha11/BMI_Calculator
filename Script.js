@@ -10,6 +10,14 @@ const showError = (text) => {
 };
 
 const getBMICategory = (bmi) => {
+  if (isNaN(bmi) || bmi <= 0) {
+  return {
+    status: "Invalid",
+    note: "Please enter a valid height and weight.",
+    color: "#9e9e9e",
+    emoji: "❓"
+  };
+}
   if (bmi < 18.5) {
     return {
       status: "Underweight",
