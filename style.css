@@ -8,7 +8,11 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-.bmi-info h2,
+.bmi-info h2{
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #06d6a0;
+}
 .bmi-info h3 {
   color: #06d6a0;
   margin-bottom: 15px;
@@ -59,7 +63,9 @@
     padding: 15px;
   }
 
-  .bmi-info h2,
+  .bmi-info h2{
+    font-size:1.5rem;
+  }
   .bmi-info h3 {
     font-size: 1.4rem;
   }
