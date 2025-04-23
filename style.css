@@ -1,266 +1,62 @@
-/* Base Styles */
-body {
-  font-family: 'Segoe UI', sans-serif;
-  box-sizing: border-box;
-  max-width: 800px;
-  margin: 30px auto;
-  padding: 20px;
+/* BMI Info Section */
+.bmi-info {
+  background-color: #1f1f2e;
+  padding: 25px;
+  margin-top: 30px;
   border-radius: 10px;
-  background: linear-gradient(135deg, #2b2b40, #1c1c2c);
-  color: #e0e0e0;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease-in-out;
-  border: 1px solid #3a3a5a;
-}
-
-h1 {
-  font-size: 1.9rem;
-  text-align: center;
-  color: #ffd166;
-}
-
-h2, h3 {
-  font-size: 1.8rem;
-  color: #06d6a0;
-}
-
-.title {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-/* Header */
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  background: linear-gradient(90deg, #ff8c42, #ff3c38);
-  padding: 10px 20px;
-  color: white;
-  border-radius: 50px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  margin-bottom: 5%;
-  border: 1px solid #ffb199;
-}
-
-.logo img {
-  height: 50px;
-}
-
-/* Navigation */
-.nav-bar {
-  display: flex;
-  align-items: center;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-links li {
-  margin: 0 15px;
-}
-
-.nav-links a {
-  color: #ffffff;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.nav-links a:hover {
-  color: #ffe0c7;
-}
-
-/* Container */
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: #32324e;
-  padding: 20px;
-  margin: auto;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  border: 1px solid #50507a;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
-  width: 100%;
-  max-width: 540px;
-}
-
-.container label {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-  color: #fcbf49;
-}
-
-.container input,
-.container select {
-  padding: 10px;
-  border: 1px solid #c7c7e3;
-  border-radius: 10px;
-  margin-bottom: 12px;
-  width: 100%;
-  max-width: 500px;
-  background-color: #f0f0f5;
-  color: #333;
-}
-
-/* Button */
-.calculate button {
-  padding: 10px 20px;
-  background-color: #118ab2;
-  color: white;
-  border: 1px solid #0b6e90;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s;
-}
-
-.calculate button:hover {
-  background-color: #0b6e90;
-}
-
-/* Result Display */
-.result {
-  font-size: 2rem;
-  color: #ef476f;
-  text-align: center;
-}
-
-/* Paragraph Section */
-.paragraph {
-  background-color: #073b4c;
-  color: #f8f9fa;
-  padding: 20px 20px 0;
-  border-radius: 10px;
-  margin-top: 20px;
-  text-align: left;
-  border: 1px solid #0b4c5f;
-}
-
-.paragraph p {
-  font-size: 1rem;
-  line-height: 1.6;
-  margin-bottom: 10px;
-}
-
-/* Calculation Section */
-.calculation {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: large;
-  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.15);
   border: 1px solid #444;
-  padding: 10px;
-  background-color: #2a2a3b;
-  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Image */
-.responsive-img {
-  width: 100%;
-  height: auto;
-  max-width: 900px;
-  margin-top: 20px;
-  border-radius: 8px;
-  border: 1px solid #666;
+.bmi-info h2,
+.bmi-info h3 {
+  color: #06d6a0;
+  margin-bottom: 15px;
+  font-size: 1.6rem;
 }
 
-/* About Section */
-.about-section {
-  background: linear-gradient(180deg, #e6e6ea, #f5f5f9);
-  color: #333;
-  padding: 60px 20px;
-  font-family: "Arial", sans-serif;
-  text-align: center;
-  border-top: 2px solid #ccc;
-}
-
-.about-section .container {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.about-section h2 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  color: #0077b6;
-}
-
-.about-section p {
+.bmi-info p {
   font-size: 1rem;
   line-height: 1.6;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
+  color: #d9d9e3;
 }
 
-/* Media Queries */
+/* External Links Styling */
+.external-links {
+  list-style: square inside;
+  padding-left: 0;
+  margin-top: 15px;
+}
 
-/* Mobile Devices */
+.external-links li {
+  margin-bottom: 8px;
+}
+
+.external-links a {
+  color: #ffd166;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.external-links a:hover {
+  color: #ffe0c7;
+  text-decoration: underline;
+}
+
+/* Responsive Tweaks for Info Section */
 @media (max-width: 600px) {
-  h1 {
-    font-size: 1.5rem;
-  }
-
-  .container {
+  .bmi-info {
     padding: 15px;
   }
-  .calculate button{
-    width:100%;
-  }
-  .nav-links li{
-    margin:0 10px;'
+
+  .bmi-info h2,
+  .bmi-info h3 {
+    font-size: 1.4rem;
   }
 
-  .container input,
-  .container select {
-    width: 100%;
-    padding: 10px;
-    box-sizing: border-box;
-  }
-
-  .calculate button {
-    padding: 12px 25px;
-    width: 100%;
-  }
-
-  .paragraph {
-    padding: 15px;
-    text-align: center;
-  }
-
-  .paragraph p {
-    font-size: 0.9rem;
-    line-height: 1.5;
-  }
-}
-
-/* Tablets and Small Desktops */
-@media (max-width: 900px) {
-  h1 {
-    font-size: 1.7rem;
-  }
-
-  .container {
-    padding: 20px;
-  }
-
-  .container input,
-  .container select {
-    width: 100%;
-  }
-
-  .calculate button {
-    padding: 10px 18px;
-  }
-
-  .paragraph {
-    padding: 20px;
+  .external-links li {
+    font-size: 0.95rem;
   }
 }
