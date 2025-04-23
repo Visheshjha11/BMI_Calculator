@@ -91,9 +91,23 @@ form.addEventListener("submit", (e) => {
   `;
 
   // Optional: Gender-based note
-  if (gender === "female" && bmiValue < 19) {
-    message.innerHTML += `<p style="font-size: 0.9rem; color: #ffc107;">Note: For women, a healthy BMI may start around 19 depending on body composition.</p>`;
-  } else if (gender === "male" && bmiValue < 20) {
-    message.innerHTML += `<p style="font-size: 0.9rem; color: #ffc107;">Note: For men, BMI ranges may vary slightly based on muscle mass.</p>`;
+  const getGenderNote = (gender, bmi) => {
+  if (gender === "female" && bmi < 19) {
+    return "Note: For women, a healthy BMI may start around 19 depending on body composition.";
+  } else if (gender === "male" && bmi < 20) {
+    return "Note: For men, BMI ranges may vary slightly based on muscle mass.";
   }
+  return "";
+};
+
+const genderNote = getGenderNote(gender, bmiValue);
+if (genderNote) {
+  message.innerHTML += `<p style="font-size: 0.9rem; color: #ffc107;">${genderNote}</p>`;
+}
+
+if (!gender) {
+  console.warn("Gender is not specified. Skipping gender-specific note.");
+  return;
+}
+
 });
