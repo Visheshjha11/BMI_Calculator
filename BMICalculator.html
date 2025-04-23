@@ -57,7 +57,13 @@
       step="0.1"
       required 
       aria-required="true"
+      aria-label="Your weight in kilograms"
+      aria-describedby="weight-error"
     />
+    <span id="weight-error" class="error-message" style="display:none; color: red;">
+  Please enter a valid weight (greater than 0).
+</span>
+
 
     <div class="form-group">
   <label for="age">
