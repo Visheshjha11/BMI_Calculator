@@ -30,6 +30,10 @@ A simple, user-friendly web application that calculates Body Mass Index (BMI) us
 
 - A modern web browser (Chrome, Firefox, Safari, Edge)
 - Text editor (VS Code, Sublime Text, etc.)
+- No server-side technologies are required for this project, as it's a static web app.
+- An active internet connection is required to view the live demo version hosted online or to clone and run the project locally.
+
+
 
 ### Installation
 
