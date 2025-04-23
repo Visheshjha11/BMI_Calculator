@@ -55,10 +55,15 @@ form.addEventListener("submit", (e) => {
   const gender = getInputValue("#gender");
 
   // Input validation
-  if (!height || height <= 0 || !weight || weight <= 0) {
-  message.innerHTML = "<p style='color: red;'>Please enter valid height and weight values.</p>";
+if (!height || height <= 0 || !weight || weight <= 0) {
+  message.innerHTML = `
+    <p style="color: red; font-weight: 500;">
+      ⚠️ Please enter valid height and weight values greater than 0.
+    </p>
+  `;
   return;
 }
+
   if (!isValidNumber(height) || height > 300) return showError("Please provide a valid height in cm (e.g., 150 - 250).");
   if (!isValidNumber(weight) || weight > 500) return showError("Please provide a valid weight in kg (e.g., 30 - 300).");
   if (!isValidNumber(age) || age < 5 || age > 120) return showError("Please provide a valid age.");
