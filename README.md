@@ -6,7 +6,7 @@ A simple, user-friendly web application that calculates Body Mass Index (BMI) us
 
 ## Features
 
-- **Simple Interface**: Clean and intuitive design for easy use
+- **Simple Interface**: Clean and intuitive design for easy used
 - **Instant Calculation**: Immediate BMI result display
 - **Responsive Design**: Works seamlessly on desktop and mobile devices
 - **BMI Category Interpretation**: Provides weight status categories
