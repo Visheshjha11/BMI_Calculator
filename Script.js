@@ -48,11 +48,11 @@ form.addEventListener("submit", (e) => {
   results.innerHTML = "";
   message.innerHTML = "";
 
-  // Get inputs
-  const height = parseInt(getInputValue("#height"));
-  const weight = parseFloat(getInputValue("#weight"));
-  const age = parseInt(getInputValue("#age"));
-  const gender = getInputValue("#gender");
+// Get inputs
+const height = parseInt(getInputValue("#height"), 10);
+const weight = parseFloat(getInputValue("#weight"));
+const age = parseInt(getInputValue("#age"), 10);
+const gender = getInputValue("#gender")?.toLowerCase();
 
   // Input validation
   if (!height || height <= 0 || !weight || weight <= 0) {
