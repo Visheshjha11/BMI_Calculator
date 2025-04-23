@@ -84,15 +84,21 @@
   <div class="container">
     <h1>Body Mass Index (BMI) Calculator</h1>
     
-    <form id="bmi-form">
-      <!-- Gender Field -->
-      <label for="gender">Gender: <span class="mandatory">*</span></label>
-      <select name="gender" id="gender" required>
-        <option value="" disabled selected>Select your gender</option>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-        <option value="Other">Other</option>
-      </select>
+<form id="bmi-form" aria-labelledby="bmi-form-title">
+  <!-- Form Title for Accessibility -->
+  <h2 id="bmi-form-title" class="visually-hidden">BMI Calculator Form</h2>
+
+  <!-- Gender Field -->
+  <div class="form-group">
+    <label for="gender">Gender: <span class="mandatory" aria-hidden="true">*</span></label>
+    <select name="gender" id="gender" required aria-required="true">
+      <option value="" disabled selected hidden>Select your gender</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+</form>
 
       <!-- Height Field -->
       <label for="height">Height (in cm): <span class="mandatory">*</span></label>
