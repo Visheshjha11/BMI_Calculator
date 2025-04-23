@@ -2,7 +2,7 @@
 
 ## Overview
 
-A simple, user-friendly web application that calculates Body Mass Index (BMI) using HTML, CSS, and JavaScript. This tool helps users quickly assess their body composition based on height and weight measurements.And give a quick estimate of whether your weight is appropriate for your height.
+The BMI Calculator is a simple, yet powerful web application designed to help users calculate their Body Mass Index (BMI) based on their height and weight. This tool is an excellent resource for anyone interested in tracking their body composition and understanding whether they are within a healthy weight range.
 
 ## Features
 
