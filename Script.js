@@ -64,16 +64,18 @@ form.addEventListener("submit", (e) => {
   if (!isValidNumber(age) || age < 5 || age > 120) return showError("Please provide a valid age.");
   if (!gender) return showError("Please select your gender.");
 
-  // Calculate BMI
-  const bmi = (weight / ((height / 100) ** 2)).toFixed(1);
-  const bmiValue = parseFloat(bmi);
-  const category = getBMICategory(bmiValue);
-  results.innerHTML = `
-  <div style="color: ${category.color}">
+// Calculate BMI
+const bmi = (weight / ((height / 100) ** 2)).toFixed(1);
+const bmiValue = parseFloat(bmi);
+const category = getBMICategory(bmiValue);
+
+results.innerHTML = `
+  <div style="color: ${category.color}; font-weight: 500;">
     <p><strong>${category.status} ${category.emoji}</strong></p>
-    <p>BMI: ${bmi}</p>
+    <p><strong>BMI:</strong> ${bmi}</p>
     <p>${category.note}</p>
-  </div>;
+  </div>
+`;
 
   // Display Result
   results.innerHTML = `
