@@ -36,6 +36,7 @@
 .external-links a {
   color: #ffd166;
   text-decoration: none;
+  word-break:break-word;
   font-weight: 500;
   transition: color 0.3s ease, text-decoration 0.3s ease;
 }
@@ -43,7 +44,14 @@
 .external-links a:hover {
   color: #ffe0c7;
   text-decoration: underline;
+  letter-spacing: 0.3px;
 }
+.external-links a:focus {
+  outline: 2px dashed #ffd166;
+  outline-offset: 4px;
+  background-color: rgba(255, 209, 102, 0.1);
+}
+
 
 /* Responsive Tweaks for Info Section */
 @media (max-width: 600px) {
