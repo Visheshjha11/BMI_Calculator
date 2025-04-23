@@ -84,7 +84,9 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ## Contact
 
 Vishesh Jha - visheshjha456@gmail.com
+
 Jatin - jatinsaini.7404312173@gmail.com
+
 Project Link: https://github.com/Visheshjha11/BMI_Calculator
 
 ## Acknowledgements
