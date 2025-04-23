@@ -54,13 +54,9 @@ A simple, user-friendly web application that calculates Body Mass Index (BMI) us
 
 ## BMI Categories
 
-- **Underweight**: Below 18.5
-- **Normal weight**: 18.5 - 24.9
-- **Overweight**: 25 - 29.9
-- **Obesity**: 30 or greater
-- BMI doesn't account for muscle mass, bone density, overall body composition, or differences by sex and age.
+docs: add BMI classification with health considerations to README
 
-## Responsive Design
+
 
 The application is fully responsive and provides an optimal viewing experience across a wide range of devices, from mobile phones to desktop computers.
 
