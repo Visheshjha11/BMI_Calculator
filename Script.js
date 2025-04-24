@@ -133,15 +133,19 @@ results.innerHTML = `
   return "";
 };
 
-const genderNote = getGenderNote(gender, bmiValue);
-if (genderNote) {
-  message.innerHTML += `<p style="font-size: 0.9rem; color: #ffc107;">${genderNote}</p>`;
-}
-
 if (!gender) {
   console.warn("Gender is not specified. Skipping gender-specific note.");
   return;
 }
+
+const genderNote = getGenderNote(gender, bmiValue);
+if (genderNote) {
+  message.innerHTML += `
+    <p style="font-size: 0.9rem; color: #ffc107; margin-top: 0.5rem;">
+      💡 ${genderNote}
+    </p>`;
+}
+
 
 
 });
