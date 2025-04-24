@@ -4,18 +4,27 @@ const message = document.querySelector("#message");
 const getInputValue = (selector) => document.querySelector(selector).value.trim();
 const isValidNumber = (value) => !isNaN(value) && value > 0;
 
-const showError = (text) => {
+const showError = (messageText) => {
   results.innerHTML = "";
-  message.innerHTML = `<span style="color: red; font-weight: bold;">⚠️ ${text}</span>`;
+  message.innerHTML = `
+    <span style="color: red; font-weight: bold;">
+      ⚠️ ${messageText}
+    </span>`;
 };
 
 const getBMICategory = (bmi) => {
   if (isNaN(bmi) || bmi <= 0) {
-  return {
-    status: "Invalid",
-    note: "Please enter a valid height and weight.",
-    color: "#9e9e9e",
-    emoji: "❓"
+    return {
+      status: "Invalid",
+      note: "Please enter a valid height and weight.",
+      color: "#9e9e9e",
+      emoji: "❓"
+    };
+  }
+
+  // Additional BMI categorization can go here
+};
+
   };
 }
   if (bmi < 18.5) {
