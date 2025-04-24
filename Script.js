@@ -1,8 +1,15 @@
-const form = document.querySelector("#bmi-form");
-const results = document.querySelector("#results");
-const message = document.querySelector("#message");
+// Select DOM elements
+const bmiForm = document.querySelector("#bmi-form");
+const resultDisplay = document.querySelector("#results");
+const messageDisplay = document.querySelector("#message");
+
+// Utility function to get trimmed value from input
 const getInputValue = (selector) => document.querySelector(selector).value.trim();
-const isValidNumber = (value) => !isNaN(value) && value > 0;
+
+// Utility function to validate numeric input
+const isValidNumber = (value) => {
+  const number = parseFloat(value);
+  return !isNaN(number) && number > 0
 
 const showError = (text) => {
   results.innerHTML = "";
