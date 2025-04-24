@@ -117,6 +117,7 @@ results.innerHTML = `
   </div>
 `;
 
+
   message.innerHTML = `
     <p style="color: #fff; background-color: ${category.color}; padding: 10px; border-radius: 8px; margin-top: 10px;">
       ${category.note}
