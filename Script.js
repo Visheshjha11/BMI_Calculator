@@ -109,14 +109,13 @@ results.innerHTML = `
   </div>
 `;
 
-  // Display Result
-  results.innerHTML = `
-    <div style="color: ${category.color}; font-size: 1.5rem;">
-      ${category.emoji} Your BMI is: <strong>${bmi}</strong>
-      <br />
-      <strong>Status:</strong> ${category.status}
-    </div>
-  `;
+  /// Display Result
+results.innerHTML = `
+  <div style="color: ${category.color}; font-size: 1.5rem; line-height: 1.6;">
+    <p>${category.emoji} Your BMI is: <strong>${bmi.toFixed(1)}</strong></p>
+    <p><strong>Status:</strong> ${category.status}</p>
+  </div>
+`;
 
   message.innerHTML = `
     <p style="color: #fff; background-color: ${category.color}; padding: 10px; border-radius: 8px; margin-top: 10px;">
