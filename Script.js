@@ -65,13 +65,18 @@ form.addEventListener("submit", (e) => {
   results.innerHTML = "";
   message.innerHTML = "";
 
-// Get inputs
+// Get and parse user inputs
 const height = parseInt(getInputValue("#height"), 10);
 const weight = parseFloat(getInputValue("#weight"));
 const age = parseInt(getInputValue("#age"), 10);
-const gender = getInputValue("#gender")?.toLowerCase();
+const gender = getInputValue("#gender")?.trim().toLowerCase() || null;
 
-  // Input validation
+// Optional: validate inputs right away
+if (isNaN(height) || isNaN(weight) || isNaN(age) || !gender) {
+  showError("All fields must be filled in correctly.");
+  return;
+}
+
   if (!height || height <= 0 || !weight || weight <= 0) {
   message.innerHTML = "<p style='color: red;'>Please enter valid height and weight values.</p>";
   return;
