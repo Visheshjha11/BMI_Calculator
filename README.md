@@ -69,14 +69,16 @@ If you encounter a bug, have a feature request, or want to ask a question, we’
 4. **Include Logs or Screenshots**  
    If applicable, attach logs, error messages, or screenshots to help illustrate the problem.
 
-5. **Mention the Environment**  
-   Include details like:
+5. **Mention the Environment**
+   When reporting an issue or submitting a pull request, please include details about your 
+   environment to help us reproduce and fix problems faster:
    - OS and version
    - Browser or runtime
    - App version or Git commit hash
    - Any relevant configuration
+   - Runtime Environment 
 
-6. **Stay Respectful and Constructive**  
+7. **Stay Respectful and Constructive**  
    We’re all here to improve the project together. Kindness and clarity go a long way! ❤️
 
 
