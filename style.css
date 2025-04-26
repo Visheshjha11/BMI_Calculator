@@ -66,17 +66,23 @@
 /* Responsive Tweaks for Info Section */
 @media (max-width: 600px) {
   .bmi-info {
-    padding: 15px;
+    padding: 1rem;
   }
 
-  .bmi-info h2{
-    font-size:1.5rem;
+  .bmi-info h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
   }
+
   .bmi-info h3 {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
   }
 
   .external-links li {
     font-size: 0.95rem;
+    line-height: 1.4;
   }
 }
+
+
