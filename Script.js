@@ -8,9 +8,12 @@ const showError = (messageText) => {
   results.innerHTML = "";
   message.innerHTML = `
     <span style="color: red; font-weight: bold;">
-      ⚠️ ${messageText}
-    </span>`;
-};
+    }
+    .error-message {
+  color: red;
+  font-weight: bold;
+}
+
 
 const getBMICategory = (bmi) => {
   if (isNaN(bmi) || bmi <= 0) {
