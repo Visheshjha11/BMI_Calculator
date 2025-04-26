@@ -103,6 +103,10 @@ if (!gender) {
 const bmi = (weight / ((height / 100) ** 2)).toFixed(1);
 const bmiValue = parseFloat(bmi);
 const category = getBMICategory(bmiValue);
+if (!category) {
+  showError("Could not determine BMI category. Please check your inputs.");
+  return;
+}
 
 results.innerHTML = `
   <div style="color: ${category.color}; font-weight: 500;">
