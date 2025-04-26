@@ -122,35 +122,35 @@ results.innerHTML = `
   </div>
 `;
 
+message.innerHTML = `
+  <p style="color: #fff; background-color: ${category.color}; padding: 10px; border-radius: 8px; margin-top: 10px;">
+    ${category.note}
+  </p>
+`;
 
-  message.innerHTML = `
-    <p style="color: #fff; background-color: ${category.color}; padding: 10px; border-radius: 8px; margin-top: 10px;">
-      ${category.note}
-    </p>
-  `;
+// Gender-based note function
+const getGenderNote = (gender, bmi) => {
+  if (!gender) return "";
 
-  // Optional: Gender-based note
-  const getGenderNote = (gender, bmi) => {
   if (gender === "female" && bmi < 19) {
     return "Note: For women, a healthy BMI may start around 19 depending on body composition.";
-  } else if (gender === "male" && bmi < 20) {
+  }
+  if (gender === "male" && bmi < 20) {
     return "Note: For men, BMI ranges may vary slightly based on muscle mass.";
   }
   return "";
 };
 
-if (!gender) {
-  console.warn("Gender is not specified. Skipping gender-specific note.");
-  return;
-}
-
 const genderNote = getGenderNote(gender, bmiValue);
+
 if (genderNote) {
   message.innerHTML += `
     <p style="font-size: 0.9rem; color: #ffc107; margin-top: 0.5rem;">
       💡 ${genderNote}
-    </p>`;
+    </p>
+  `;
 }
+
 
 //var weight = document.getElementById('weight').value;
 
