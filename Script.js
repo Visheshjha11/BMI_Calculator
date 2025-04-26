@@ -73,16 +73,16 @@ const age = parseInt(getInputValue("#age"), 10);
 const gender = getInputValue("#gender")?.trim().toLowerCase() || null;
 
 // Optional: validate inputs right away
+// Validate input fields
 if (isNaN(height) || isNaN(weight) || isNaN(age) || !gender) {
-  showError("All fields must be filled in correctly.");
-  return;
+  return showError("All fields must be filled in correctly.");
 }
 
-  if (!height || height <= 0 || !weight || weight <= 0) {
-  message.innerHTML = "<p style='color: red;'>Please enter valid height and weight values.</p>";
-  return;
+if (!height || height <= 0 || !weight || weight <= 0) {
+  return showError("Please enter valid height and weight values.");
 }
-  if (!isValidNumber(height) || height < 50 || height > 300) {
+
+if (!isValidNumber(height) || height < 50 || height > 300) {
   return showError("Please enter a valid height in centimeters (e.g., 100–250 cm).");
 }
 
@@ -98,21 +98,26 @@ if (!gender) {
   return showError("Please select a gender.");
 }
 
+// Calculate BMI
 const bmi = (weight / ((height / 100) ** 2)).toFixed(1);
 const bmiValue = parseFloat(bmi);
+
+// Get BMI category
 const category = getBMICategory(bmiValue);
+
 if (!category) {
-  showError("Could not determine BMI category. Please check your inputs.");
-  return;
+  return showError("Could not determine BMI category. Please check your inputs.");
 }
 
+// Display BMI results
 results.innerHTML = `
-  <div style="color: ${category.color}; font-weight: 500;">
+  <div style="color: ${category.color}; font-weight: 500; line-height: 1.6;">
     <p><strong>${category.status} ${category.emoji}</strong></p>
     <p><strong>BMI:</strong> ${bmi}</p>
     <p>${category.note}</p>
   </div>
 `;
+
 
   /// Display Result
 results.innerHTML = `
