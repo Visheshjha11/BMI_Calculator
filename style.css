@@ -25,6 +25,9 @@
   margin-bottom: 0.625rem;
   color: #d9d9e3;
 }
+.bmi-result {
+  font-weight: 500;
+}
 
 /* External Links Styling */
 .external-links {
