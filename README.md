@@ -13,11 +13,6 @@ A simple, user-friendly web application that calculates Body Mass Index (BMI) us
 - **Input Validation**: Ensures accurate and meaningful calculations
 - **Multilingual Support**:Available in multiple languages for wider accessibility.
 
-
-## Live Demo
-
-[View Live Demo](https://Visheshjha11.github.io/bmi-calculator)
-
 ## Technologies Used
 
 - HTML5
