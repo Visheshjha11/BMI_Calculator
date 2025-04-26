@@ -3,8 +3,6 @@ const results = document.querySelector("#results");
 const message = document.querySelector("#message");
 const getInputValue = (selector) => document.querySelector(selector).value.trim();
 const isValidNumber = (value) => !isNaN(value) && value > 0;
-
-const showError = (messageText) => {
   results.innerHTML = "";
   message.innerHTML = `
     <span style="color: red; font-weight: bold;">
@@ -154,6 +152,13 @@ if (genderNote) {
     </p>`;
 }
 
+//var weight = document.getElementById('weight').value;
+
+  //var height = document.getElementById('height').value;
+
+//const showError = (messageText) => {
+
+//document.getElementById('result').innerText = "Your BMI is " + bmi;
 
 
 });
