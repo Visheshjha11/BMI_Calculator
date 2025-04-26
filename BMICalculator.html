@@ -22,7 +22,7 @@
   <header class="header" role="banner">
   <div class="logo">
     <a href="index.html" aria-label="Go to Home">
-      <img src="logobmi.png" alt="BMI Calculator Logo" width="120" height="auto" />
+      <img src="logobmi.png" alt="BMI Calculator Logo" width="120" />
     </a>
   </div>
 
@@ -35,17 +35,16 @@
     </ul>
   </nav>
 </header>
-    <!-- Weight Input Field -->
+
+<!-- Weight Input Field -->
 <div class="form-group">
   <label for="weight">
     Weight (kg): <span class="mandatory" aria-hidden="true">*</span>
     <span class="sr-only">This field is required</span>
-  <header class="header" role="banner">
-  <div class="logo">
-    <a href="index.html" aria-label="Go to Home">
-      <img src="logobmi.png" alt="BMI Calculator Logo" width="120" height="auto" />
-    </a>
-  </div>
+  </label>
+  <input type="number" id="weight" name="weight" required aria-required="true" />
+</div>
+
 
   <nav class="nav-bar" role="navigation" aria-label="Main Navigation">
     <ul class="nav-links">
