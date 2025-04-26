@@ -43,9 +43,9 @@
 .external-links a {
   color: #ffd166;
   text-decoration: none;
-  word-break:break-word;
+  word-break: break-word;
   font-weight: 500;
-  transition: color 0.3s ease, text-decoration 0.3s ease;
+  transition: color 0.3s ease, text-decoration 0.3s ease, letter-spacing 0.3s ease;
 }
 
 .external-links a:hover {
@@ -53,13 +53,16 @@
   text-decoration: underline;
   letter-spacing: 0.3px;
 }
+
 .external-links a:focus {
   outline: 2px dashed #ffd166;
   outline-offset: 4px;
   background-color: rgba(255, 209, 102, 0.1);
+  text-decoration: underline;
 }
+
 .external-links a:visited {
-  color: #f4a261; /* A slightly different color for visited links */
+  color: #f4a261;
 }
 
 
