@@ -1,204 +1,492 @@
-  <main class="container">
-    <h1>BMI Calculator</h1>
-    <form id="bmi-form">
-      <label for="height">Height (cm):</label>
-      <input type="number" id="height" required />
-
-      <label for="weight">Weight (kg):</label>
-      <input type="number" id="weight" required />
-
-      <!--<button onclick="calculateBMI()">Calculate BMI</button>
-  <p id="result"></p>-->
-
-      <button type="submit">Calculate BMI</button>
-    </form>
-
-    <section id="results"></section>
-  </main>
-
-  <script src="script.js"></script>
-</body>
-</html>
-
-
-  <!-- Header with Logo and Navigation -->
-  <header class="header" role="banner">
-  <div class="logo">
-    <a href="index.html" aria-label="Go to Home">
-      <img src="logobmi.png" alt="BMI Calculator Logo" width="120" />
-    </a>
-  </div>
-
-  <nav class="nav-bar" role="navigation" aria-label="Main Navigation">
-    <ul class="nav-links">
-      <li><a href="index.html" aria-current="page">Home</a></li>
-      <li><a href="calculator.html">Calculator</a></li>
-      <li><a href="contact.html">Contact Us</a></li>
-      <li><a href="about.html">About Us</a></li>
-    </ul>
-  </nav>
-</header>
-
-<!-- Weight Input Field -->
-<div class="form-group">
-  <label for="weight">
-    Weight (kg): <span class="mandatory" aria-hidden="true">*</span>
-    <span class="sr-only">This field is required</span>
-  </label>
-  <input type="number" id="weight" name="weight" required aria-required="true" />
-</div>
-
-
-  <nav class="nav-bar" role="navigation" aria-label="Main Navigation">
-    <ul class="nav-links">
-      <li><a href="index.html" aria-current="page">Home</a></li>
-      <li><a href="calculator.html">Calculator</a></li>
-      <li><a href="contact.html">Contact Us</a></li>
-      <li><a href="about.html">About Us</a></li>
-    </ul>
-  </nav>
-</header>
-
-
-  <small id="weightHelp" class="form-text text-muted">
-    Please enter your weight in kilograms (e.g., 70.5). Minimum is 10 kg.
-  </small>
-</div>
-
-  <button type="submit">Calculate BMI</button>
-</form>
-
-<section id="results"></section>
-
-    <label for="weight">
-      Weight (kg): <span class="mandatory">*</span>
-    </label>
-    <input 
-      type="number" 
-      id="weight" 
-      name="weight" 
-      placeholder="Enter your weight" 
-      min="1"
-      step="0.1"
-      required 
-      aria-required="true"
-      aria-label="Your weight in kilograms"
-      aria-describedby="weight-error"
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BMI Calculator</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <span id="weight-error" class="error-message" style="display:none; color: red;">
-  Please enter a valid weight (greater than 0).
-</span>
-
-
-    <div class="form-group">
-  <label for="age">
-    Age <span class="mandatory" aria-hidden="true">*</span>
-    <span class="sr-only">Required field</span>
-  </label>
-  <input 
-    type="number" 
-    id="age" 
-    name="age" 
-    placeholder="Enter your age" 
-    min="1"
-    max="120"
-    step="1"
-    inputmode="numeric"
-    required 
-    aria-required="true"
-    title="Please enter your age (1–120)"
-  />
-</div>
-
-    <button type="submit">Calculate BMI</button>
-  </form>
-</div>
-
-      <label for="gender">Gender: <span class="mandatory">*</span></label>
-      <select name="gender" id="gender" required>
-        <option value="" disabled selected>Select your gender</option>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-        <option value="Other">Other</option>
-      </select>
-
-      <div class="calculate">
-        <button type="submit">Calculate</button>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav>
+          <div class="logo">
+            <i class="fas fa-heartbeat"></i>
+            <span>HealthBMI</span>
+          </div>
+          <button class="hamburger" id="hamburger">
+            <i class="fas fa-bars"></i>
+          </button>
+          <ul class="nav-links" id="nav-links">
+            <li><a href="#" class="active" data-page="home">Home</a></li>
+            <li><a href="#" data-page="charts">BMI Charts</a></li>
+            <li><a href="#" data-page="about">About</a></li>
+          </ul>
+        </nav>
       </div>
-    </form>
+    </header>
 
-    <div class="result" id="results"></div>
-    <div class="message" id="message"></div>
-  </div>
+    <main>
+      <div class="container">
+        <!-- Home Page -->
+        <div id="home-page" class="home-page">
+          <div class="hero">
+            <h1>Calculate Your Body Mass Index</h1>
+            <p>
+              A simple way to measure if your weight is healthy for your height
+            </p>
+          </div>
 
-  <!-- BMI Information Section with External Links -->
-  <section class="bmi-info" aria-labelledby="bmi-heading">
-  <h2 id="bmi-heading">What is BMI?</h2>
-  
-  <p>
-    <strong>Body Mass Index (BMI)</strong> is a simple, widely used tool that estimates body fat based on a person’s weight relative to their height. It helps classify individuals as underweight, healthy weight, overweight, or obese.
-  </p>
-  
-  <p>
-    Healthcare professionals often use BMI as an initial screening method for weight-related conditions such as cardiovascular disease, type 2 diabetes, and other metabolic disorders.
-  </p>
-  
-  <p>
-    Despite its usefulness, BMI is not a comprehensive measure of health. It does not directly assess body fat and overlooks factors like muscle mass, bone density, sex, age, and overall body composition.
-  </p>
-</section>
+          <div class="calculator">
+            <h2>BMI Calculator</h2>
+            <form id="bmi-form">
+              <div class="radio-group">
+                <label>
+                  <input type="radio" name="unit" value="metric" checked />
+                  Metric (cm, kg)
+                </label>
+                <label>
+                  <input type="radio" name="unit" value="imperial" />
+                  Imperial (in, lbs)
+                </label>
+              </div>
 
-    <section aria-labelledby="learn-more-heading">
-  <h3 id="learn-more-heading">Want to Learn More?</h3>
-  <ul class="external-links">
-    <li>
-      <a 
-        href="https://www.cdc.gov/healthyweight/assessing/bmi/index.html" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        title="Visit CDC's page on BMI for adults"
-        aria-label="Visit CDC's page on BMI for adults (opens in a new tab)"
-      >
-        CDC – BMI Information for Adults
-      </a>
-    </li>
-    <li>
-      <a 
-        href="https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        title="Visit WHO's fact sheet on obesity and overweight"
-        aria-label="Visit WHO's fact sheet on obesity and overweight (opens in a new tab)"
-      >
-        WHO – Obesity and Overweight Fact Sheet
-      </a>
-    </li>
-  </ul>
-</section>
+              <div id="metric-inputs">
+                <div class="input-group">
+                  <label for="height-cm">Height (cm)</label>
+                  <input
+                    type="number"
+                    id="height-cm"
+                    placeholder="Enter height in centimeters"
+                    min="1"
+                    required
+                  />
+                </div>
 
-        CDC: About BMI for Adults
-      </a>
-    </li>
-    <li>
-      <a 
-        href="https://health.google.com/" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        title="Visit Google Health to learn more about BMI"
-      >
-        Google Health: Understanding BMI
-      </a>
-    </li>
-    <li>
-      <a 
-        href="https://www.reddit.com/r/Health/" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        title="Visit Reddit
+                <div class="input-group">
+                  <label for="weight-kg">Weight (kg)</label>
+                  <input
+                    type="number"
+                    id="weight-kg"
+                    placeholder="Enter weight in kilograms"
+                    min="1"
+                    step="0.1"
+                    required
+                  />
+                </div>
+              </div>
 
-    <p>&copy; 2025 BMI Calculator. All rights reserved.</p>
-  </footer>
+              <div id="imperial-inputs" style="display: none">
+                <div class="input-row">
+                  <div class="form-control">
+                    <label for="height-ft">Height (ft)</label>
+                    <input
+                      type="number"
+                      id="height-ft"
+                      placeholder="Feet"
+                      min="1"
+                      required
+                    />
+                  </div>
+                  <div class="form-control">
+                    <label for="height-in">Height (in)</label>
+                    <input
+                      type="number"
+                      id="height-in"
+                      placeholder="Inches"
+                      min="0"
+                      max="11"
+                      required
+                    />
+                  </div>
+                </div>
 
-  <script src="script.js"></script>
-</body>
+                <div class="input-group">
+                  <label for="weight-lbs">Weight (lbs)</label>
+                  <input
+                    type="number"
+                    id="weight-lbs"
+                    placeholder="Enter weight in pounds"
+                    min="1"
+                    step="0.1"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="input-group">
+                <label for="age">Age</label>
+                <input
+                  type="number"
+                  id="age"
+                  placeholder="Enter your age"
+                  min="2"
+                  max="120"
+                  required
+                />
+              </div>
+
+              <div class="input-group">
+                <label for="gender">Gender</label>
+                <select id="gender" required>
+                  <option value="">Select gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <button type="submit">Calculate BMI</button>
+            </form>
+
+            <div class="result" id="result">
+              <h3>Your BMI Result</h3>
+              <div class="bmi-value" id="bmi-value">25.0</div>
+              <div class="bmi-category" id="bmi-category">Normal Weight</div>
+              <div class="bmi-info" id="bmi-info">
+                <p>
+                  Your BMI indicates that you have a healthy weight for your
+                  height. Maintaining a healthy weight may reduce the risk of
+                  chronic diseases associated with overweight and obesity.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts Page -->
+        <div id="charts-page" class="charts-page" style="display: none">
+          <div class="hero">
+            <h1>BMI Charts & Tables</h1>
+            <p>
+              Learn more about BMI categories and how to interpret your results
+            </p>
+          </div>
+
+          <div class="chart-container">
+            <div class="tabs">
+              <button class="tab-btn active" data-tab="adult-chart">
+                Adult BMI Chart
+              </button>
+              <button class="tab-btn" data-tab="children-chart">
+                Children BMI Chart
+              </button>
+            </div>
+
+            <div id="adult-chart" class="tab-content active">
+              <h2>Adult BMI Categories</h2>
+              <p>
+                For adults 20 years and older, BMI is interpreted using standard
+                weight status categories that are the same for all ages and for
+                both men and women.
+              </p>
+
+              <table class="bmi-table">
+                <thead>
+                  <tr>
+                    <th>BMI Range</th>
+                    <th>Weight Status</th>
+                    <th>Health Risk</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Below 18.5</td>
+                    <td>
+                      <span
+                        class="category-cell"
+                        style="background-color: #64b5f6; color: white"
+                        >Underweight</span
+                      >
+                    </td>
+                    <td>Increased risk for some health problems</td>
+                  </tr>
+                  <tr>
+                    <td>18.5 – 24.9</td>
+                    <td>
+                      <span
+                        class="category-cell"
+                        style="background-color: #66bb6a; color: white"
+                        >Normal Weight</span
+                      >
+                    </td>
+                    <td>Lowest risk for health problems</td>
+                  </tr>
+                  <tr>
+                    <td>25.0 – 29.9</td>
+                    <td>
+                      <span
+                        class="category-cell"
+                        style="background-color: #ffd54f; color: #333"
+                        >Overweight</span
+                      >
+                    </td>
+                    <td>Increased risk for heart disease, diabetes</td>
+                  </tr>
+                  <tr>
+                    <td>30.0 – 34.9</td>
+                    <td>
+                      <span
+                        class="category-cell"
+                        style="background-color: #ff8a65; color: white"
+                        >Obesity (Class 1)</span
+                      >
+                    </td>
+                    <td>High risk for heart disease, diabetes, etc.</td>
+                  </tr>
+                  <tr>
+                    <td>35.0 – 39.9</td>
+                    <td>
+                      <span
+                        class="category-cell"
+                        style="background-color: #ff8a65; color: white"
+                        >Obesity (Class 2)</span
+                      >
+                    </td>
+                    <td>Very high risk for health problems</td>
+                  </tr>
+                  <tr>
+                    <td>40.0 and above</td>
+                    <td>
+                      <span
+                        class="category-cell"
+                        style="background-color: #e53935; color: white"
+                        >Extreme Obesity</span
+                      >
+                    </td>
+                    <td>Extremely high risk for serious health problems</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="card" style="margin-top: 2rem">
+                <h3>Understanding Adult BMI</h3>
+                <p>
+                  BMI is a useful screening tool, but it does have limitations:
+                </p>
+                <ul>
+                  <li>
+                    BMI may overestimate body fat in athletes and others with
+                    muscular builds
+                  </li>
+                  <li>
+                    BMI may underestimate body fat in older adults who have lost
+                    muscle mass
+                  </li>
+                  <li>
+                    BMI doesn't distinguish between excess fat, muscle, or bone
+                    mass
+                  </li>
+                  <li>
+                    BMI doesn't account for where fat is stored in the body
+                  </li>
+                </ul>
+                <p>
+                  Always consult with a healthcare provider to assess your
+                  health risks and determine the best weight management approach
+                  for you.
+                </p>
+              </div>
+            </div>
+
+            <div id="children-chart" class="tab-content">
+              <h2>Children and Teen BMI</h2>
+              <p>
+                For children and teens (aged 2-19), BMI is age and sex-specific
+                and is often referred to as BMI-for-age. It's plotted on growth
+                charts to determine a percentile ranking.
+              </p>
+
+              <table class="bmi-table">
+                <thead>
+                  <tr>
+                    <th>BMI Percentile Range</th>
+                    <th>Weight Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Below 5th percentile</td>
+                    <td>
+                      <span
+                        class="category-cell"
+                        style="background-color: #64b5f6; color: white"
+                        >Underweight</span
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>5th to less than 85th percentile</td>
+                    <td>
+                      <span
+                        class="category-cell"
+                        style="background-color: #66bb6a; color: white"
+                        >Normal Weight</span
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>85th to less than 95th percentile</td>
+                    <td>
+                      <span
+                        class="category-cell"
+                        style="background-color: #ffd54f; color: #333"
+                        >Overweight</span
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>95th percentile or greater</td>
+                    <td>
+                      <span
+                        class="category-cell"
+                        style="background-color: #ff8a65; color: white"
+                        >Obesity</span
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="card" style="margin-top: 2rem">
+                <h3>Important Considerations for Children's BMI</h3>
+                <p>When evaluating a child's BMI:</p>
+                <ul>
+                  <li>
+                    Children's body fat changes as they grow, and differs
+                    between boys and girls
+                  </li>
+                  <li>
+                    A high BMI can indicate excess fat, but additional
+                    assessments are needed to determine this
+                  </li>
+                  <li>
+                    BMI is not a diagnostic tool, but a screening method to
+                    identify potential weight issues
+                  </li>
+                  <li>
+                    Parents should consult with healthcare providers if
+                    concerned about their child's growth patterns
+                  </li>
+                </ul>
+                <p>
+                  Healthcare providers use BMI percentiles along with other
+                  growth charts and assessment tools to evaluate a child's
+                  growth and development over time.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- About Page -->
+        <div id="about-page" class="about-page">
+          <div class="hero">
+            <h1>About BMI Calculator</h1>
+            <p>
+              Learn more about Body Mass Index and how to use our calculator
+            </p>
+          </div>
+
+          <div class="about-content">
+            <h2>What is BMI?</h2>
+            <p>
+              Body Mass Index (BMI) is a value derived from the mass (weight)
+              and height of a person. The BMI is defined as the body mass
+              divided by the square of the body height, and is expressed in
+              units of kg/m², resulting from mass in kilograms and height in
+              meters.
+            </p>
+
+            <p>
+              The BMI is a convenient rule of thumb used to broadly categorize a
+              person as underweight, normal weight, overweight, or obese based
+              on tissue mass (muscle, fat, and bone) and height. Commonly
+              accepted BMI ranges are:
+            </p>
+            <ul>
+              <li>Underweight: under 18.5 kg/m²</li>
+              <li>Normal weight: 18.5 to 24.9 kg/m²</li>
+              <li>Overweight: 25 to 29.9 kg/m²</li>
+              <li>Obesity: 30 kg/m² or greater</li>
+            </ul>
+
+            <h2>How is BMI Calculated?</h2>
+            <p>BMI is calculated using the following formulas:</p>
+
+            <div class="card">
+              <h3>Metric Formula</h3>
+              <p>BMI = weight(kg) / height²(m²)</p>
+              <p>
+                Example: If your weight is 70 kg and your height is 175 cm (1.75
+                m):
+              </p>
+              <p>BMI = 70 / (1.75)² = 70 / 3.0625 = 22.86</p>
+            </div>
+
+            <div class="card">
+              <h3>Imperial Formula</h3>
+              <p>BMI = 703 × weight(lb) / height²(in²)</p>
+              <p>
+                Example: If your weight is 154 pounds and your height is 5'9"
+                (69 inches):
+              </p>
+              <p>BMI = 703 × 154 / (69)² = 703 × 154 / 4761 = 22.79</p>
+            </div>
+
+            <h2>Limitations of BMI</h2>
+            <p>
+              While BMI is a useful screening tool, it does have limitations:
+            </p>
+            <ul>
+              <li>It doesn't account for differences in body composition</li>
+              <li>It doesn't distinguish between fat, muscle, and bone mass</li>
+              <li>
+                It doesn't account for age, gender, ethnicity, and other factors
+                that can influence health
+              </li>
+              <li>It doesn't indicate the distribution of fat on the body</li>
+            </ul>
+
+            <p>
+              Because of these limitations, BMI should be considered as just one
+              of many factors when evaluating your overall health and weight
+              status. Always consult with healthcare professionals for a
+              comprehensive health assessment.
+            </p>
+
+            <h2>About Our Calculator</h2>
+            <p>
+              Our BMI calculator is designed to be user-friendly and provide
+              quick results. Features include:
+            </p>
+            <ul>
+              <li>Options for both metric and imperial measurements</li>
+              <li>Age and gender inputs for more personalized feedback</li>
+              <li>Clear categorization of BMI results</li>
+              <li>Basic information about what your BMI result means</li>
+            </ul>
+
+            <p>
+              Remember that this calculator is for informational purposes only
+              and is not intended to replace professional medical advice,
+              diagnosis, or treatment.
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2025 HealthBMI Calculator. All rights reserved.</p>
+      </div>
+    </footer>
+    <script src="./script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+  </body>
 </html>
