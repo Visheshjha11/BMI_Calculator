@@ -1,169 +1,193 @@
-const form = document.querySelector("#bmi-form");
-const results = document.querySelector("#results");
-const message = document.querySelector("#message");
-const getInputValue = (selector) => document.querySelector(selector).value.trim();
-const isValidNumber = (value) => !isNaN(value) && value > 0;
-  results.innerHTML = "";
-  message.innerHTML = `
-    <span style="color: red; font-weight: bold;">
-    }
-    .error-message {
-  color: red;
-  font-weight: bold;
-}
+// Navigation
+      const navLinks = document.querySelectorAll(".nav-links a");
+      const pages = document.querySelectorAll(
+        "#home-page, #charts-page, #about-page"
+      );
+      const hamburger = document.getElementById("hamburger");
+      const navLinksContainer = document.getElementById("nav-links");
 
+      // Tab navigation for charts page
+      const tabBtns = document.querySelectorAll(".tab-btn");
+      const tabContents = document.querySelectorAll(".tab-content");
 
-const getBMICategory = (bmi) => {
-  if (isNaN(bmi) || bmi <= 0) {
-    return {
-      status: "Invalid",
-      note: "Please enter a valid height and weight.",
-      color: "#9e9e9e",
-      emoji: "❓"
-    };
-  }
+      // Form elements
+      const bmiForm = document.getElementById("bmi-form");
+      const metricInputs = document.getElementById("metric-inputs");
+      const imperialInputs = document.getElementById("imperial-inputs");
+      const unitInputs = document.querySelectorAll('input[name="unit"]');
+      const resultSection = document.getElementById("result");
+      const bmiValueElement = document.getElementById("bmi-value");
+      const bmiCategoryElement = document.getElementById("bmi-category");
+      const bmiInfoElement = document.getElementById("bmi-info");
 
-  // Additional BMI categorization can go here
-};
+      // Navigation functionality
+      hamburger.addEventListener("click", () => {
+        navLinksContainer.classList.toggle("active");
+      });
 
-  };
-}
-  if (bmi < 18.5) {
-    return {
-      status: "Underweight",
-      note: "Try to eat a balanced diet and consult a healthcare provider.",
-      color: "#f9a825",
-      emoji: "📉"
-    };
-  } else if (bmi < 25) {
-    return {
-      status: "Normal weight",
-      note: "Keep up the good work! Maintain a healthy lifestyle.",
-      color: "#43a047",
-      emoji: "✅"
-    };
-  } else if (bmi < 30) {
-    return {
-      status: "Overweight",
-      note: "Consider regular exercise and healthier eating habits.",
-      color: "#fb8c00",
-      emoji: "⚠️"
-    };
-  } else {
-    return {
-      status: "Obese",
-      note: "Consult with a doctor for a health plan.",
-      color: "#e53935",
-      emoji: "🚨"
-    };
-  }
-};
+      navLinks.forEach((link) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
 
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
+          // Update active link
+          navLinks.forEach((link) => link.classList.remove("active"));
+          link.classList.add("active");
 
-  // Clear previous messages
-  results.innerHTML = "";
-  message.innerHTML = "";
+          // Show corresponding page
+          const targetPage = link.getAttribute("data-page");
+          pages.forEach((page) => (page.style.display = "none"));
+          document.getElementById(`${targetPage}-page`).style.display = "block";
 
-// Get and parse user inputs
-const height = parseInt(getInputValue("#height"), 10);
-const weight = parseFloat(getInputValue("#weight"));
-const age = parseInt(getInputValue("#age"), 10);
-const gender = getInputValue("#gender")?.trim().toLowerCase() || null;
+          // Close mobile menu if open
+          navLinksContainer.classList.remove("active");
+        });
+      });
 
-// Optional: validate inputs right away
-// Validate input fields
-if (isNaN(height) || isNaN(weight) || isNaN(age) || !gender) {
-  return showError("All fields must be filled in correctly.");
-}
+      // Tab functionality for charts page
+      tabBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          tabBtns.forEach((btn) => btn.classList.remove("active"));
+          btn.classList.add("active");
 
-if (!height || height <= 0 || !weight || weight <= 0) {
-  return showError("Please enter valid height and weight values.");
-}
+          tabContents.forEach((content) => content.classList.remove("active"));
+          document
+            .getElementById(btn.getAttribute("data-tab"))
+            .classList.add("active");
+        });
+      });
 
-if (!isValidNumber(height) || height < 50 || height > 300) {
-  return showError("Please enter a valid height in centimeters (e.g., 100–250 cm).");
-}
+      // Switch between metric and imperial inputs
+      unitInputs.forEach((input) => {
+        input.addEventListener("change", () => {
+          if (input.value === "metric") {
+            metricInputs.style.display = "block";
+            imperialInputs.style.display = "none";
+          } else {
+            metricInputs.style.display = "none";
+            imperialInputs.style.display = "block";
+          }
+        });
+      });
 
-if (!isValidNumber(weight) || weight < 10 || weight > 500) {
-  return showError("Please enter a valid weight in kilograms (e.g., 30–300 kg).");
-}
+      // BMI calculation
+      bmiForm.addEventListener("submit", (e) => {
+        e.preventDefault();
 
-if (!isValidNumber(age) || age < 5 || age > 120) {
-  return showError("Please enter a valid age (between 5 and 120).");
-}
+        let bmi;
+        const unit = document.querySelector('input[name="unit"]:checked').value;
+        const gender = document.getElementById("gender").value;
+        const age = parseInt(document.getElementById("age").value);
 
-if (!gender) {
-  return showError("Please select a gender.");
-}
+        if (unit === "metric") {
+          const heightCm = parseFloat(
+            document.getElementById("height-cm").value
+          );
+          const weightKg = parseFloat(
+            document.getElementById("weight-kg").value
+          );
 
-// Calculate BMI
-const bmi = (weight / ((height / 100) ** 2)).toFixed(1);
-const bmiValue = parseFloat(bmi);
+          // Convert height from cm to meters and calculate BMI
+          const heightM = heightCm / 100;
+          bmi = weightKg / (heightM * heightM);
+        } else {
+          const heightFt = parseFloat(
+            document.getElementById("height-ft").value
+          );
+          const heightIn = parseFloat(
+            document.getElementById("height-in").value
+          );
+          const weightLbs = parseFloat(
+            document.getElementById("weight-lbs").value
+          );
 
-// Get BMI category
-const category = getBMICategory(bmiValue);
+          // Convert height to inches and calculate BMI
+          const totalHeightInches = heightFt * 12 + heightIn;
+          bmi = (weightLbs * 703) / (totalHeightInches * totalHeightInches);
+        }
 
-if (!category) {
-  return showError("Could not determine BMI category. Please check your inputs.");
-}
+        // Round BMI to 1 decimal place
+        bmi = Math.round(bmi * 10) / 10;
 
-// Display BMI results
-results.innerHTML = `
-  <div style="color: ${category.color}; font-weight: 500; line-height: 1.6;">
-    <p><strong>${category.status} ${category.emoji}</strong></p>
-    <p><strong>BMI:</strong> ${bmi}</p>
-    <p>${category.note}</p>
-  </div>
-`;
+        // Determine BMI category and message
+        let category, bgColor, message;
 
+        if (age < 20) {
+          // For children and teens, we'd ideally use percentiles
+          // This is a simplified version
+          if (bmi < 18.5) {
+            category = "Underweight";
+            bgColor = "#64b5f6";
+            message =
+              "Your BMI indicates that you may be underweight. This can be associated with certain health issues. Consider consulting with a healthcare provider.";
+          } else if (bmi < 25) {
+            category = "Normal Weight";
+            bgColor = "#66bb6a";
+            message =
+              "Your BMI indicates that you have a healthy weight for your height. Keep up the good habits!";
+          } else if (bmi < 30) {
+            category = "Overweight";
+            bgColor = "#ffd54f";
+            message =
+              "Your BMI indicates that you may be overweight. Talking to a healthcare provider can help you determine if you need to make any changes to your lifestyle.";
+          } else {
+            category = "Obesity";
+            bgColor = "#ff8a65";
+            message =
+              "Your BMI indicates obesity, which can increase risk for certain health conditions. It's recommended to consult with a healthcare provider.";
+          }
+        } else {
+          // For adults
+          if (bmi < 18.5) {
+            category = "Underweight";
+            bgColor = "#64b5f6";
+            message =
+              "Your BMI indicates that you are underweight. This can be associated with malnutrition, vitamin deficiencies, or other health issues. Consider consulting with a healthcare provider.";
+          } else if (bmi < 25) {
+            category = "Normal Weight";
+            bgColor = "#66bb6a";
+            message =
+              "Your BMI indicates that you have a healthy weight for your height. Maintaining a healthy weight may reduce the risk of chronic diseases associated with overweight and obesity.";
+          } else if (bmi < 30) {
+            category = "Overweight";
+            bgColor = "#ffd54f";
+            message =
+              "Your BMI indicates that you are overweight. This may increase your risk for certain health conditions. Consider consulting with a healthcare provider about healthy lifestyle changes.";
+          } else if (bmi < 35) {
+            category = "Obesity (Class 1)";
+            bgColor = "#ff8a65";
+            message =
+              "Your BMI indicates Class 1 obesity. This increases your risk for heart disease, diabetes, and other conditions. It's recommended to consult with a healthcare provider.";
+          } else if (bmi < 40) {
+            category = "Obesity (Class 2)";
+            bgColor = "#ff8a65";
+            message =
+              "Your BMI indicates Class 2 obesity. This significantly increases your risk for various health conditions. It's highly recommended to consult with a healthcare provider.";
+          } else {
+            category = "Extreme Obesity";
+            bgColor = "#e53935";
+            message =
+              "Your BMI indicates extreme obesity. This greatly increases your risk for serious health conditions. Please consult with a healthcare provider for guidance.";
+          }
+        }
 
-  /// Display Result
-results.innerHTML = `
-  <div style="color: ${category.color}; font-size: 1.5rem; line-height: 1.6;">
-    <p>${category.emoji} Your BMI is: <strong>${bmi.toFixed(1)}</strong></p>
-    <p><strong>Status:</strong> ${category.status}</p>
-  </div>
-`;
+        // Display results
+        bmiValueElement.textContent = bmi.toFixed(1);
+        bmiCategoryElement.textContent = category;
+        bmiCategoryElement.style.backgroundColor = bgColor;
+        bmiCategoryElement.style.color =
+          bgColor === "#ffd54f" ? "#333" : "white";
+        bmiInfoElement.innerHTML = `<p>${message}</p>`;
 
-message.innerHTML = `
-  <p style="color: #fff; background-color: ${category.color}; padding: 10px; border-radius: 8px; margin-top: 10px;">
-    ${category.note}
-  </p>
-`;
+        // Show result section
+        resultSection.style.display = "block";
 
-// Gender-based note function
-const getGenderNote = (gender, bmi) => {
-  if (!gender) return "";
+        // Scroll to result
+        resultSection.scrollIntoView({ behavior: "smooth" });
+      });
 
-  if (gender === "female" && bmi < 19) {
-    return "Note: For women, a healthy BMI may start around 19 depending on body composition.";
-  }
-  if (gender === "male" && bmi < 20) {
-    return "Note: For men, BMI ranges may vary slightly based on muscle mass.";
-  }
-  return "";
-};
-
-const genderNote = getGenderNote(gender, bmiValue);
-
-if (genderNote) {
-  message.innerHTML += `
-    <p style="font-size: 0.9rem; color: #ffc107; margin-top: 0.5rem;">
-      💡 ${genderNote}
-    </p>
-  `;
-}
-
-
-//var weight = document.getElementById('weight').value;
-
-  //var height = document.getElementById('height').value;
-
-//const showError = (messageText) => {
-
-//document.getElementById('result').innerText = "Your BMI is " + bmi;
-
-
-});
+      // Close result section on click outside
+      document.addEventListener("click", (e) => {
+        if (!resultSection.contains(e.target) && !bmiForm.contains(e.target)) {
+          resultSection.style.display = "none";
+        }
+      });
