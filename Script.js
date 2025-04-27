@@ -1,42 +1,50 @@
 // Navigation
-      const navLinks = document.querySelectorAll(".nav-links a");
-      const pages = document.querySelectorAll(
-        "#home-page, #charts-page, #about-page"
-      );
-      const hamburger = document.getElementById("hamburger");
-      const navLinksContainer = document.getElementById("nav-links");
+      // DOM Elements
+const navLinks = document.querySelectorAll(".nav-links a");
+const pages = document.querySelectorAll("#home-page, #charts-page, #about-page");
+const hamburger = document.getElementById("hamburger");
+const navLinksContainer = document.getElementById("nav-links");
 
-      // Tab navigation for charts page
-      const tabBtns = document.querySelectorAll(".tab-btn");
-      const tabContents = document.querySelectorAll(".tab-content");
+// Tab navigation elements
+const tabBtns = document.querySelectorAll(".tab-btn");
+const tabContents = document.querySelectorAll(".tab-content");
 
-      // Form elements
-      const bmiForm = document.getElementById("bmi-form");
-      const metricInputs = document.getElementById("metric-inputs");
-      const imperialInputs = document.getElementById("imperial-inputs");
-      const unitInputs = document.querySelectorAll('input[name="unit"]');
-      const resultSection = document.getElementById("result");
-      const bmiValueElement = document.getElementById("bmi-value");
-      const bmiCategoryElement = document.getElementById("bmi-category");
-      const bmiInfoElement = document.getElementById("bmi-info");
+// BMI Form Elements
+const bmiForm = document.getElementById("bmi-form");
+const metricInputs = document.getElementById("metric-inputs");
+const imperialInputs = document.getElementById("imperial-inputs");
+const unitInputs = document.querySelectorAll('input[name="unit"]');
+const resultSection = document.getElementById("result");
+const bmiValueElement = document.getElementById("bmi-value");
+const bmiCategoryElement = document.getElementById("bmi-category");
+const bmiInfoElement = document.getElementById("bmi-info");
 
-      // Navigation functionality
-      hamburger.addEventListener("click", () => {
-        navLinksContainer.classList.toggle("active");
-      });
+// Hamburger menu toggle
+hamburger?.addEventListener("click", () => {
+  navLinksContainer.classList.toggle("active");
+});
 
-      navLinks.forEach((link) => {
-        link.addEventListener("click", (e) => {
-          e.preventDefault();
+// Navigation link handling
+navLinks.forEach((link) => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
 
-          // Update active link
-          navLinks.forEach((link) => link.classList.remove("active"));
-          link.classList.add("active");
+    // Update active link styling
+    navLinks.forEach((lnk) => lnk.classList.remove("active"));
+    link.classList.add("active");
 
-          // Show corresponding page
-          const targetPage = link.getAttribute("data-page");
-          pages.forEach((page) => (page.style.display = "none"));
-          document.getElementById(`${targetPage}-page`).style.display = "block";
+    // Show the corresponding page
+    const targetPage = link.getAttribute("data-page");
+    pages.forEach((page) => (page.style.display = "none"));
+    const targetElement = document.getElementById(`${targetPage}-page`);
+    if (targetElement) {
+      targetElement.style.display = "block";
+    } else {
+      console.error(`Page element for "${targetPage}" not found.`);
+    }
+  });
+});
+
 
           // Close mobile menu if open
           navLinksContainer.classList.remove("active");
