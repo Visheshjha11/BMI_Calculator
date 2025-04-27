@@ -70,21 +70,36 @@
       });
 
       // BMI calculation
-      bmiForm.addEventListener("submit", (e) => {
-        e.preventDefault();
+     bmiForm.addEventListener("submit", (e) => {
+  e.preventDefault();
 
-        let bmi;
-        const unit = document.querySelector('input[name="unit"]:checked').value;
-        const gender = document.getElementById("gender").value;
-        const age = parseInt(document.getElementById("age").value);
+  const unit = document.querySelector('input[name="unit"]:checked')?.value;
+  const gender = document.getElementById("gender")?.value;
+  const age = parseInt(document.getElementById("age")?.value, 10);
 
-        if (unit === "metric") {
-          const heightCm = parseFloat(
-            document.getElementById("height-cm").value
-          );
-          const weightKg = parseFloat(
-            document.getElementById("weight-kg").value
-          );
+  if (!unit || isNaN(age) || !gender) {
+    console.error("Missing required fields.");
+    return;
+  }
+
+  let bmi;
+
+  if (unit === "metric") {
+    const heightCm = parseFloat(document.getElementById("height-cm")?.value);
+    const weightKg = parseFloat(document.getElementById("weight-kg")?.value);
+
+    if (isNaN(heightCm) || isNaN(weightKg)) {
+      console.error("Invalid height or weight input.");
+      return;
+    }
+
+    bmi = weightKg / ((heightCm / 100) ** 2);
+    console.log(`Calculated BMI (Metric): ${bmi.toFixed(2)}`);
+  }
+
+  // You can expand here for other unit types if needed
+});
+
 
           // Convert height from cm to meters and calculate BMI
           const heightM = heightCm / 100;
