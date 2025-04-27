@@ -1,91 +1,408 @@
-/* BMI Info Section */
-.bmi-info {
-  background-color: #1f1f2e;
-  padding: 25px;
-  margin-top: 30px;
-  border-radius: 10px;
-  border: 1px solid #444;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
+:root {
+        --primary: #6200ea;
+        --secondary: #03dac6;
+        --accent: #ff4081;
+        --background: #f5f5f5;
+        --surface: #ffffff;
+        --error: #b00020;
+        --text-primary: #212121;
+        --text-secondary: #757575;
+      }
 
-.bmi-info h2{
-  font-size: 1.8rem;
-  margin-bottom: 1.25rem;
-  color: #06d6a0;
-}
-.bmi-info h3 {
-  color: #06d6a0;
-  margin-bottom: 0.9375;
-  font-size: 1.6rem;
-}
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
 
-.bmi-info p {
-  font-size: 1rem;
-  line-height: 1.6;
-  margin-bottom: 0.625rem;
-  color: #d9d9e3;
-}
-.bmi-result {
-  font-weight: 500;
-}
+      body {
+        background-color: var(--background);
+        color: var(--text-primary);
+        line-height: 1.6;
+      }
 
-/* External Links Styling */
-.external-links {
-  list-style: square inside;
-  padding-left: 0;
-  margin-top: 15px;
-}
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
 
-.external-links li {
-  margin-bottom: 8px;
-}
+      header {
+        background-color: var(--primary);
+        color: white;
+        padding: 1rem 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
 
-.external-links a {
-  color: #ffd166;
-  text-decoration: none;
-  word-break: break-word;
-  font-weight: 500;
-  transition: color 0.3s ease, text-decoration 0.3s ease, letter-spacing 0.3s ease;
-}
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
 
-.external-links a:hover {
-  color: #ffe0c7;
-  text-decoration: underline;
-  letter-spacing: 0.3px;
-}
+      .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+      }
 
-.external-links a:focus {
-  outline: 2px dashed #ffd166;
-  outline-offset: 4px;
-  background-color: rgba(255, 209, 102, 0.1);
-  text-decoration: underline;
-}
+      .logo i {
+        margin-right: 10px;
+        font-size: 2rem;
+      }
 
-.external-links a:visited {
-  color: #f4a261;
-}
+      .nav-links {
+        display: flex;
+        list-style: none;
+      }
 
+      .nav-links li {
+        margin-left: 20px;
+      }
 
-/* Responsive Tweaks for Info Section */
-@media (max-width: 600px) {
-  .bmi-info {
-    padding: 1rem;
-  }
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        padding: 8px 15px;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+      }
 
-  .bmi-info h2 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-  }
+      .nav-links a:hover,
+      .nav-links a.active {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
 
-  .bmi-info h3 {
-    font-size: 1.3rem;
-    margin-bottom: 0.5rem;
-  }
+      .hamburger {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: white;
+        cursor: pointer;
+      }
 
-  .external-links li {
-    font-size: 0.95rem;
-    line-height: 1.4;
-  }
-}
+      main {
+        padding: 2rem 0;
+        min-height: calc(100vh - 140px);
+      }
 
+      .hero {
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        color: white;
+        padding: 3rem 0;
+        text-align: center;
+        border-radius: 10px;
+        margin-bottom: 2rem;
+      }
 
+      .hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .calculator {
+        background-color: var(--surface);
+        border-radius: 10px;
+        padding: 2rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .calculator h2 {
+        color: var(--primary);
+        margin-bottom: 1.5rem;
+        text-align: center;
+      }
+
+      .input-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .input-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+      }
+
+      .radio-group {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 1.5rem;
+      }
+
+      .radio-group label {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .radio-group input[type="radio"] {
+        margin-right: 8px;
+      }
+
+      .input-row {
+        display: flex;
+        gap: 20px;
+      }
+
+      .form-control {
+        flex: 1;
+      }
+
+      input[type="number"],
+      select {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #ddd;
+        border-radius: 6px;
+        font-size: 1rem;
+        transition: border-color 0.3s;
+      }
+
+      input[type="number"]:focus,
+      select:focus {
+        border-color: var(--primary);
+        outline: none;
+      }
+
+      button {
+        background-color: var(--primary);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 6px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        display: block;
+        width: 100%;
+        font-weight: 600;
+        margin-top: 1rem;
+      }
+
+      button:hover {
+        background-color: #5200d0;
+      }
+
+      .result {
+        margin-top: 2rem;
+        text-align: center;
+        display: none;
+      }
+
+      .result h3 {
+        margin-bottom: 1rem;
+        color: var(--primary);
+      }
+
+      .bmi-value {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: var(--primary);
+        margin-bottom: 1rem;
+      }
+
+      .bmi-category {
+        font-size: 1.2rem;
+        padding: 8px 16px;
+        border-radius: 20px;
+        display: inline-block;
+        margin-bottom: 1rem;
+      }
+
+      .category-underweight {
+        background-color: #64b5f6;
+        color: white;
+      }
+
+      .category-normal {
+        background-color: #66bb6a;
+        color: white;
+      }
+
+      .category-overweight {
+        background-color: #ffd54f;
+        color: #333;
+      }
+
+      .category-obese {
+        background-color: #ff8a65;
+        color: white;
+      }
+
+      .category-extremely-obese {
+        background-color: #e53935;
+        color: white;
+      }
+
+      .bmi-info {
+        background-color: #f0f7ff;
+        padding: 15px;
+        border-radius: 10px;
+        margin-top: 1rem;
+        text-align: left;
+      }
+
+      .chart-container {
+        padding: 2rem;
+        background-color: var(--surface);
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
+      }
+
+      .charts-page .tabs {
+        display: flex;
+        margin-bottom: 1.5rem;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .charts-page .tab-btn {
+        background: none;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--text-secondary);
+        border-bottom: 3px solid transparent;
+        transition: all 0.3s;
+        width: auto;
+      }
+
+      .charts-page .tab-btn.active {
+        color: var(--primary);
+        border-bottom-color: var(--primary);
+      }
+
+      .charts-page .tab-content {
+        display: none;
+      }
+
+      .charts-page .tab-content.active {
+        display: block;
+      }
+
+      .bmi-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+      }
+
+      .bmi-table th,
+      .bmi-table td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .bmi-table th {
+        background-color: var(--primary);
+        color: white;
+      }
+
+      .bmi-table tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      .bmi-table tr:hover {
+        background-color: #f1f1f1;
+      }
+
+      .category-cell {
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-weight: 500;
+      }
+
+      .about-page {
+        display: none;
+      }
+
+      .about-content {
+        background-color: var(--surface);
+        border-radius: 10px;
+        padding: 2rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .about-content h2 {
+        color: var(--primary);
+        margin-bottom: 1.5rem;
+      }
+
+      .about-content p {
+        margin-bottom: 1rem;
+      }
+
+      .card {
+        background-color: var(--surface);
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .card h3 {
+        color: var(--primary);
+        margin-bottom: 1rem;
+      }
+
+      footer {
+        background-color: var(--primary);
+        color: white;
+        padding: 1rem 0;
+        text-align: center;
+      }
+
+      @media (max-width: 768px) {
+        .hamburger {
+          display: block;
+        }
+
+        .nav-links {
+          position: fixed;
+          top: 60px;
+          left: 0;
+          width: 100%;
+          background-color: var(--primary);
+          flex-direction: column;
+          padding: 20px 0;
+          transform: translateY(-150%);
+          transition: transform 0.3s ease-in-out;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-links.active {
+          transform: translateY(0);
+        }
+
+        .nav-links li {
+          margin: 10px 0;
+          width: 100%;
+          text-align: center;
+        }
+
+        .nav-links a {
+          display: block;
+          padding: 10px;
+        }
+
+        .input-row {
+          flex-direction: column;
+          gap: 10px;
+        }
+      }
