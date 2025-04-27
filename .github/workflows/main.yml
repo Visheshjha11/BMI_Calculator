@@ -1,0 +1,23 @@
+name: Welcome New Issue Creators
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  welcome:
+    if: github.event.issue.user.type == 'User'
+    steps:
+      - name: Greet First-Time Issue Creators
+        uses: actions/first-interaction@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          issue-message: |
+            👋 Hello @${{ github.event.issue.user.login }}!  
+            
+            Welcome to the **BMI Calculator** project — we're glad you're here! 🎉
+
+            Thank you for opening your first issue. We’ll look into it as soon as possible.  
+            In the meantime, feel free to check out our [README](README.md) and [CONTRIBUTING](CONTRIBUTING.md) guide if you’re interested in contributing!
+
+          pr-message: ""  # Leave empty since we're only handling issues here
