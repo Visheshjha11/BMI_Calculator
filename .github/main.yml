@@ -1,0 +1,25 @@
+name: Welcome New Contributors
+
+on:
+  pull_request_target:
+    types: [opened]
+
+jobs:
+  greet:
+    if: github.event.pull_request.user.type == 'User'
+    steps:
+      - name: Welcome message
+        uses: actions/first-interaction@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          issue-message: |
+            👋 Hey there! Welcome to the BMI Calculator project!  
+
+            Thanks for taking the time to contribute — we’re happy to have you here.  
+            If you’re new to open source, check out the [CONTRIBUTING.md](CONTRIBUTING.md) file for guidance.
+
+          pr-message: |
+            🎉 Thanks for your first pull request to the BMI Calculator!  
+
+            Our team will review it soon. If you need help, feel free to ask.  
+            Happy coding! 💻✨
