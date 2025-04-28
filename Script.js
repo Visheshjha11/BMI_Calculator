@@ -11,7 +11,7 @@ form.addEventListener("submit", function (e) {
   const weight = parseInt(document.querySelector("#weight").value);
   const age = parseInt(document.querySelector("#age").value);
   const gender = document.querySelector("#gender").value;
-
+ 
   // Validate inputs
   if (isNaN(height) || height <= 0) {
     results.innerHTML = "Please provide a valid height.";
