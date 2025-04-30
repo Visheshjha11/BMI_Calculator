@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BMI Calculator</title>
+    <style>
+      :root {
+        --primary: #6200ea;
+        --secondary: #03dac6;
+        --accent: #ff4081;
+        --background: #f5f5f5;
+        --surface: #ffffff;
+        --error: #b00020;
+        --text-primary: #212121;
+        --text-secondary: #757575;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: var(--background);
+        color: var(--text-primary);
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      header {
+        background-color: var(--primary);
+        color: white;
+        padding: 1rem 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+      }
+
+      .logo i {
+        margin-right: 10px;
+        font-size: 2rem;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+      }
+
+      .nav-links li {
+        margin-left: 20px;
+      }
+
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        padding: 8px 15px;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+
+      .hamburger {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: white;
+        cursor: pointer;
+      }
+
+      main {
+        padding: 2rem 0;
+        min-height: calc(100vh - 140px);
+      }
+
+      .hero {
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        color: white;
+        padding: 3rem 0;
+        text-align: center;
+        border-radius: 10px;
+        margin-bottom: 2rem;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .calculator {
+        background-color: var(--surface);
+        border-radius: 10px;
+        padding: 2rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .calculator h2 {
+        color: var(--primary);
+        margin-bottom: 1.5rem;
+        text-align: center;
+      }
+
+      .input-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .input-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+      }
+
+      .radio-group {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 1.5rem;
+      }
+
+      .radio-group label {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .radio-group input[type="radio"] {
+        margin-right: 8px;
+      }
+
+      .input-row {
+        display: flex;
+        gap: 20px;
+      }
+
+      .form-control {
+        flex: 1;
+      }
+
+      input[type="number"],
+      select {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #ddd;
+        border-radius: 6px;
+        font-size: 1rem;
+        transition: border-color 0.3s;
+      }
+
+      input[type="number"]:focus,
+      select:focus {
+        border-color: var(--primary);
+        outline: none;
+      }
+
+      button {
+        background-color: var(--primary);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 6px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        display: block;
+        width: 100%;
+        font-weight: 600;
+        margin-top: 1rem;
+      }
+
+      button:hover {
+        background-color: #5200d0;
+      }
+
+      .result {
+        margin-top: 2rem;
+        text-align: center;
+        display: none;
+      }
+
+      .result h3 {
+        margin-bottom: 1rem;
+        color: var(--primary);
+      }
+
+      .bmi-value {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: var(--primary);
+        margin-bottom: 1rem;
+      }
+
+      .bmi-category {
+        font-size: 1.2rem;
+        padding: 8px 16px;
+        border-radius: 20px;
+        display: inline-block;
+        margin-bottom: 1rem;
+      }
+
+      .category-underweight {
+        background-color: #64b5f6;
+        color: white;
+      }
+
+      .category-normal {
+        background-color: #66bb6a;
+        color: white;
+      }
+
+      .category-overweight {
+        background-color: #ffd54f;
+        color: #333;
+      }
+
+      .category-obese {
+        background-color: #ff8a65;
+        color: white;
+      }
+
+      .category-extremely-obese {
+        background-color: #e53935;
+        color: white;
+      }
+
+      .bmi-info {
+        background-color: #f0f7ff;
+        padding: 15px;
+        border-radius: 10px;
+        margin-top: 1rem;
+        text-align: left;
+      }
+
+      .chart-container {
+        padding: 2rem;
+        background-color: var(--surface);
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
+      }
+
+      .charts-page .tabs {
+        display: flex;
+        margin-bottom: 1.5rem;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .charts-page .tab-btn {
+        background: none;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--text-secondary);
+        border-bottom: 3px solid transparent;
+        transition: all 0.3s;
+        width: auto;
+      }
+
+      .charts-page .tab-btn.active {
+        color: var(--primary);
+        border-bottom-color: var(--primary);
+      }
+
+      .charts-page .tab-content {
+        display: none;
+      }
+
+      .charts-page .tab-content.active {
+        display: block;
+      }
+
+      .bmi-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+      }
+
+      .bmi-table th,
+      .bmi-table td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .bmi-table th {
+        background-color: var(--primary);
+        color: white;
+      }
+
+      .bmi-table tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      .bmi-table tr:hover {
+        background-color: #f1f1f1;
+      }
+
+      .category-cell {
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-weight: 500;
+      }
+
+      .about-page {
+        display: none;
+      }
+
+      .about-content {
+        background-color: var(--surface);
+        border-radius: 10px;
+        padding: 2rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .about-content h2 {
+        color: var(--primary);
+        margin-bottom: 1.5rem;
+      }
+
+      .about-content p {
+        margin-bottom: 1rem;
+      }
+
+      .card {
+        background-color: var(--surface);
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .card h3 {
+        color: var(--primary);
+        margin-bottom: 1rem;
+      }
+
+      footer {
+        background-color: var(--primary);
+        color: white;
+        padding: 1rem 0;
+        text-align: center;
+      }
+
+      @media (max-width: 768px) {
+        .hamburger {
+          display: block;
+        }
+
+        .nav-links {
+          position: fixed;
+          top: 60px;
+          left: 0;
+          width: 100%;
+          background-color: var(--primary);
+          flex-direction: column;
+          padding: 20px 0;
+          transform: translateY(-150%);
+          transition: transform 0.3s ease-in-out;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-links.active {
+          transform: translateY(0);
+        }
+
+        .nav-links li {
+          margin: 10px 0;
+          width: 100%;
+          text-align: center;
+        }
+
+        .nav-links a {
+          display: block;
+          padding: 10px;
+        }
+
+        .input-row {
+          flex-direction: column;
+          gap: 10px;
+        }
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav>
+          <div class="logo">
+            <i class="fas fa-heartbeat"></i>
+            <span>HealthBMI</span>
+          </div>
+          <button class="hamburger" id="hamburger">
+            <i class="fas fa-bars"></i>
+          </button>
+          <ul class="nav-links" id="nav-links">
+            <li><a href="#" class="active" data-page="home">Home</a></li>
+            <li><a href="#" data-page="charts">BMI Charts</a></li>
+            <li><a href="#" data-page="about">About</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+        <!-- Home Page -->
+        <div id="home-page" class="home-page">
+          <div class="hero">
+            <h1>Calculate Your Body Mass Index</h1>
+            <p>
+              A simple way to measure if your weight is healthy for your height
+            </p>
+          </div>
+
+          <div class="calculator">
+            <h2>BMI Calculator</h2>
+            <form id="bmi-form">
+              <div class="radio-group">
+                <label>
+                  <input type="radio" name="unit" value="metric" checked />
+                  Metric (cm, kg)
+                </label>
+                <label>
+                  <input type="radio" name="unit" value="imperial" />
+                  Imperial (in, lbs)
+                </label>
+              </div>
+
+              <div id="metric-inputs">
+                <div class="input-group">
+                  <label for="height-cm">Height (cm)</label>
+                  <input
+                    type="number"
+                    id="height-cm"
+                    placeholder="Enter height in centimeters"
+                    min="1"
+                    required
+                  />
+                </div>
+
+                <div class="input-group">
+                  <label for="weight-kg">Weight (kg)</label>
+                  <input
+                    type="number"
+                    id="weight-kg"
+                    placeholder="Enter weight in kilograms"
+                    min="1"
+                    step="0.1"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div id="imperial-inputs" style="display: none">
+                <div class="input-row">
+                  <div class="form-control">
+                    <label for="height-ft">Height (ft)</label>
+                    <input
+                      type="number"
+                      id="height-ft"
+                      placeholder="Feet"
+                      min="1"
+                      required
+                    />
+                  </div>
+                  <div class="form-control">
+                    <label for="height-in">Height (in)</label>
+                    <input
+                      type="number"
+                      id="height-in"
+                      placeholder="Inches"
+                      min="0"
+                      max="11"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="input-group">
+                  <label for="weight-lbs">Weight (lbs)</label>
+                  <input
+                    type="number"
+                    id="weight-lbs"
+                    placeholder="Enter weight in pounds"
+                    min="1"
+                    step="0.1"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="input-group">
+                <label for="age">Age</label>
+                <input
+                  type="number"
+                  id="age"
+                  placeholder="Enter your age"
+                  min="2"
+                  max="120"
+                  required
+                />
+              </div>
+
+              <div class="input-group">
+                <label for="gender">Gender</label>
+                <select id="gender" required>
+                  <option value="">Select gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <button type="submit">Calculate BMI</button>
+            </form>
+
+            <div class="result" id="result">
+              <h3>Your BMI Result</h3>
+              <div class="bmi-value" id="bmi-value">25.0</div>
+              <div class="bmi-category" id="bmi-category">Normal Weight</div>
+              <div class="bmi-info" id="bmi-info">
+                <p>
+                  Your BMI indicates that you have a healthy weight for your
+                  height. Maintaining a healthy weight may reduce the risk of
+                  chronic diseases associated with overweight and obesity.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts Page -->
+        <div id="charts-page" class="charts-page" style="display: none">
+          <div class="hero">
+            <h1>BMI Charts & Tables</h1>
+            <p>
+              Learn more about BMI categories and how to interpret your results
+            </p>
+          </div>
+
+          <div class="chart-container">
+            <div class="tabs">
+              <button class="tab-btn active" data-tab="adult-chart">
+                Adult BMI Chart
+              </button>
+              <button class="tab-btn" data-tab="children-chart">
+                Children BMI Chart
+              </button>
+            </div>
+
+            <div id="adult-chart" class="tab-content active">
+              <h2>Adult BMI Categories</h2>
+              <p>
+                For adults 20 years and older, BMI is interpreted using standard
+                weight status categories that are the same for all ages and for
+                both men and women.
+              </p>
+
+              <table class="bmi-table">
+                <thead>
+                  <tr>
+                    <th>BMI Range</th>
+                    <th>Weight Status</th>
+                    <th>Health Risk</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Below 18.5</td>
+                    <td>
+                      <span
+                        class="category-cell"
+                        style="background-color: #64b5f6; color: white"
+                        >Underweight</span
+                      >
+                    </td>
+                    <td>Increased risk for some health problems</td>
+                  </tr>
+                  <tr>
+                    <td>18.5 – 24.9</td>
+                    <td>
+                      <span
+                        class="category-cell"
+                        style="background-color: #66bb6a; color: white"
+                        >Normal Weight</span
+                      >
+                    </td>
+                    <td>Lowest risk for health problems</td>
+                  </tr>
+                  <tr>
+                    <td>25.0 – 29.9</td>
+                    <td>
+                      <span
+                        class="category-cell"
+                        style="background-color: #ffd54f; color: #333"
+                        >Overweight</span
+                      >
+                    </td>
+                    <td>Increased risk for heart disease, diabetes</td>
+                  </tr>
+                  <tr>
+                    <td>30.0 – 34.9</td>
+                    <td>
+                      <span
+                        class="category-cell"
+                        style="background-color: #ff8a65; color: white"
+                        >Obesity (Class 1)</span
+                      >
+                    </td>
+                    <td>High risk for heart disease, diabetes, etc.</td>
+                  </tr>
+                  <tr>
+                    <td>35.0 – 39.9</td>
+                    <td>
+                      <span
+                        class="category-cell"
+                        style="background-color: #ff8a65; color: white"
+                        >Obesity (Class 2)</span
+                      >
+                    </td>
+                    <td>Very high risk for health problems</td>
+                  </tr>
+                  <tr>
+                    <td>40.0 and above</td>
+                    <td>
+                      <span
+                        class="category-cell"
+                        style="background-color: #e53935; color: white"
+                        >Extreme Obesity</span
+                      >
+                    </td>
+                    <td>Extremely high risk for serious health problems</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="card" style="margin-top: 2rem">
+                <h3>Understanding Adult BMI</h3>
+                <p>
+                  BMI is a useful screening tool, but it does have limitations:
+                </p>
+                <ul>
+                  <li>
+                    BMI may overestimate body fat in athletes and others with
+                    muscular builds
+                  </li>
+                  <li>
+                    BMI may underestimate body fat in older adults who have lost
+                    muscle mass
+                  </li>
+                  <li>
+                    BMI doesn't distinguish between excess fat, muscle, or bone
+                    mass
+                  </li>
+                  <li>
+                    BMI doesn't account for where fat is stored in the body
+                  </li>
+                </ul>
+                <p>
+                  Always consult with a healthcare provider to assess your
+                  health risks and determine the best weight management approach
+                  for you.
+                </p>
+              </div>
+            </div>
+
+            <div id="children-chart" class="tab-content">
+              <h2>Children and Teen BMI</h2>
+              <p>
+                For children and teens (aged 2-19), BMI is age and sex-specific
+                and is often referred to as BMI-for-age. It's plotted on growth
+                charts to determine a percentile ranking.
+              </p>
+
+              <table class="bmi-table">
+                <thead>
+                  <tr>
+                    <th>BMI Percentile Range</th>
+                    <th>Weight Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Below 5th percentile</td>
+                    <td>
+                      <span
+                        class="category-cell"
+                        style="background-color: #64b5f6; color: white"
+                        >Underweight</span
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>5th to less than 85th percentile</td>
+                    <td>
+                      <span
+                        class="category-cell"
+                        style="background-color: #66bb6a; color: white"
+                        >Normal Weight</span
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>85th to less than 95th percentile</td>
+                    <td>
+                      <span
+                        class="category-cell"
+                        style="background-color: #ffd54f; color: #333"
+                        >Overweight</span
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>95th percentile or greater</td>
+                    <td>
+                      <span
+                        class="category-cell"
+                        style="background-color: #ff8a65; color: white"
+                        >Obesity</span
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="card" style="margin-top: 2rem">
+                <h3>Important Considerations for Children's BMI</h3>
+                <p>When evaluating a child's BMI:</p>
+                <ul>
+                  <li>
+                    Children's body fat changes as they grow, and differs
+                    between boys and girls
+                  </li>
+                  <li>
+                    A high BMI can indicate excess fat, but additional
+                    assessments are needed to determine this
+                  </li>
+                  <li>
+                    BMI is not a diagnostic tool, but a screening method to
+                    identify potential weight issues
+                  </li>
+                  <li>
+                    Parents should consult with healthcare providers if
+                    concerned about their child's growth patterns
+                  </li>
+                </ul>
+                <p>
+                  Healthcare providers use BMI percentiles along with other
+                  growth charts and assessment tools to evaluate a child's
+                  growth and development over time.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- About Page -->
+        <div id="about-page" class="about-page">
+          <div class="hero">
+            <h1>About BMI Calculator</h1>
+            <p>
+              Learn more about Body Mass Index and how to use our calculator
+            </p>
+          </div>
+
+          <div class="about-content">
+            <h2>What is BMI?</h2>
+            <p>
+              Body Mass Index (BMI) is a value derived from the mass (weight)
+              and height of a person. The BMI is defined as the body mass
+              divided by the square of the body height, and is expressed in
+              units of kg/m², resulting from mass in kilograms and height in
+              meters.
+            </p>
+
+            <p>
+              The BMI is a convenient rule of thumb used to broadly categorize a
+              person as underweight, normal weight, overweight, or obese based
+              on tissue mass (muscle, fat, and bone) and height. Commonly
+              accepted BMI ranges are:
+            </p>
+            <ul>
+              <li>Underweight: under 18.5 kg/m²</li>
+              <li>Normal weight: 18.5 to 24.9 kg/m²</li>
+              <li>Overweight: 25 to 29.9 kg/m²</li>
+              <li>Obesity: 30 kg/m² or greater</li>
+            </ul>
+
+            <h2>How is BMI Calculated?</h2>
+            <p>BMI is calculated using the following formulas:</p>
+
+            <div class="card">
+              <h3>Metric Formula</h3>
+              <p>BMI = weight(kg) / height²(m²)</p>
+              <p>
+                Example: If your weight is 70 kg and your height is 175 cm (1.75
+                m):
+              </p>
+              <p>BMI = 70 / (1.75)² = 70 / 3.0625 = 22.86</p>
+            </div>
+
+            <div class="card">
+              <h3>Imperial Formula</h3>
+              <p>BMI = 703 × weight(lb) / height²(in²)</p>
+              <p>
+                Example: If your weight is 154 pounds and your height is 5'9"
+                (69 inches):
+              </p>
+              <p>BMI = 703 × 154 / (69)² = 703 × 154 / 4761 = 22.79</p>
+            </div>
+
+            <h2>Limitations of BMI</h2>
+            <p>
+              While BMI is a useful screening tool, it does have limitations:
+            </p>
+            <ul>
+              <li>It doesn't account for differences in body composition</li>
+              <li>It doesn't distinguish between fat, muscle, and bone mass</li>
+              <li>
+                It doesn't account for age, gender, ethnicity, and other factors
+                that can influence health
+              </li>
+              <li>It doesn't indicate the distribution of fat on the body</li>
+            </ul>
+
+            <p>
+              Because of these limitations, BMI should be considered as just one
+              of many factors when evaluating your overall health and weight
+              status. Always consult with healthcare professionals for a
+              comprehensive health assessment.
+            </p>
+
+            <h2>About Our Calculator</h2>
+            <p>
+              Our BMI calculator is designed to be user-friendly and provide
+              quick results. Features include:
+            </p>
+            <ul>
+              <li>Options for both metric and imperial measurements</li>
+              <li>Age and gender inputs for more personalized feedback</li>
+              <li>Clear categorization of BMI results</li>
+              <li>Basic information about what your BMI result means</li>
+            </ul>
+
+            <p>
+              Remember that this calculator is for informational purposes only
+              and is not intended to replace professional medical advice,
+              diagnosis, or treatment.
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2025 HealthBMI Calculator. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      // Navigation
+      const navLinks = document.querySelectorAll(".nav-links a");
+      const pages = document.querySelectorAll(
+        "#home-page, #charts-page, #about-page"
+      );
+      const hamburger = document.getElementById("hamburger");
+      const navLinksContainer = document.getElementById("nav-links");
+
+      // Tab navigation for charts page
+      const tabBtns = document.querySelectorAll(".tab-btn");
+      const tabContents = document.querySelectorAll(".tab-content");
+
+      // Form elements
+      const bmiForm = document.getElementById("bmi-form");
+      const metricInputs = document.getElementById("metric-inputs");
+      const imperialInputs = document.getElementById("imperial-inputs");
+      const unitInputs = document.querySelectorAll('input[name="unit"]');
+      const resultSection = document.getElementById("result");
+      const bmiValueElement = document.getElementById("bmi-value");
+      const bmiCategoryElement = document.getElementById("bmi-category");
+      const bmiInfoElement = document.getElementById("bmi-info");
+
+      // Navigation functionality
+      hamburger.addEventListener("click", () => {
+        navLinksContainer.classList.toggle("active");
+      });
+
+      navLinks.forEach((link) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+
+          // Update active link
+          navLinks.forEach((link) => link.classList.remove("active"));
+          link.classList.add("active");
+
+          // Show corresponding page
+          const targetPage = link.getAttribute("data-page");
+          pages.forEach((page) => (page.style.display = "none"));
+          document.getElementById(`${targetPage}-page`).style.display = "block";
+
+          // Close mobile menu if open
+          navLinksContainer.classList.remove("active");
+        });
+      });
+
+      // Tab functionality for charts page
+      tabBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          tabBtns.forEach((btn) => btn.classList.remove("active"));
+          btn.classList.add("active");
+
+          tabContents.forEach((content) => content.classList.remove("active"));
+          document
+            .getElementById(btn.getAttribute("data-tab"))
+            .classList.add("active");
+        });
+      });
+
+      // Switch between metric and imperial inputs
+      unitInputs.forEach((input) => {
+        input.addEventListener("change", () => {
+          if (input.value === "metric") {
+            metricInputs.style.display = "block";
+            imperialInputs.style.display = "none";
+          } else {
+            metricInputs.style.display = "none";
+            imperialInputs.style.display = "block";
+          }
+        });
+      });
+
+      // BMI calculation
+      bmiForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        let bmi;
+        const unit = document.querySelector('input[name="unit"]:checked').value;
+        const gender = document.getElementById("gender").value;
+        const age = parseInt(document.getElementById("age").value);
+
+        if (unit === "metric") {
+          const heightCm = parseFloat(
+            document.getElementById("height-cm").value
+          );
+          const weightKg = parseFloat(
+            document.getElementById("weight-kg").value
+          );
+
+          // Convert height from cm to meters and calculate BMI
+          const heightM = heightCm / 100;
+          bmi = weightKg / (heightM * heightM);
+        } else {
+          const heightFt = parseFloat(
+            document.getElementById("height-ft").value
+          );
+          const heightIn = parseFloat(
+            document.getElementById("height-in").value
+          );
+          const weightLbs = parseFloat(
+            document.getElementById("weight-lbs").value
+          );
+
+          // Convert height to inches and calculate BMI
+          const totalHeightInches = heightFt * 12 + heightIn;
+          bmi = (weightLbs * 703) / (totalHeightInches * totalHeightInches);
+        }
+
+        // Round BMI to 1 decimal place
+        bmi = Math.round(bmi * 10) / 10;
+
+        // Determine BMI category and message
+        let category, bgColor, message;
+
+        if (age < 20) {
+          // For children and teens, we'd ideally use percentiles
+          // This is a simplified version
+          if (bmi < 18.5) {
+            category = "Underweight";
+            bgColor = "#64b5f6";
+            message =
+              "Your BMI indicates that you may be underweight. This can be associated with certain health issues. Consider consulting with a healthcare provider.";
+          } else if (bmi < 25) {
+            category = "Normal Weight";
+            bgColor = "#66bb6a";
+            message =
+              "Your BMI indicates that you have a healthy weight for your height. Keep up the good habits!";
+          } else if (bmi < 30) {
+            category = "Overweight";
+            bgColor = "#ffd54f";
+            message =
+              "Your BMI indicates that you may be overweight. Talking to a healthcare provider can help you determine if you need to make any changes to your lifestyle.";
+          } else {
+            category = "Obesity";
+            bgColor = "#ff8a65";
+            message =
+              "Your BMI indicates obesity, which can increase risk for certain health conditions. It's recommended to consult with a healthcare provider.";
+          }
+        } else {
+          // For adults
+          if (bmi < 18.5) {
+            category = "Underweight";
+            bgColor = "#64b5f6";
+            message =
+              "Your BMI indicates that you are underweight. This can be associated with malnutrition, vitamin deficiencies, or other health issues. Consider consulting with a healthcare provider.";
+          } else if (bmi < 25) {
+            category = "Normal Weight";
+            bgColor = "#66bb6a";
+            message =
+              "Your BMI indicates that you have a healthy weight for your height. Maintaining a healthy weight may reduce the risk of chronic diseases associated with overweight and obesity.";
+          } else if (bmi < 30) {
+            category = "Overweight";
+            bgColor = "#ffd54f";
+            message =
+              "Your BMI indicates that you are overweight. This may increase your risk for certain health conditions. Consider consulting with a healthcare provider about healthy lifestyle changes.";
+          } else if (bmi < 35) {
+            category = "Obesity (Class 1)";
+            bgColor = "#ff8a65";
+            message =
+              "Your BMI indicates Class 1 obesity. This increases your risk for heart disease, diabetes, and other conditions. It's recommended to consult with a healthcare provider.";
+          } else if (bmi < 40) {
+            category = "Obesity (Class 2)";
+            bgColor = "#ff8a65";
+            message =
+              "Your BMI indicates Class 2 obesity. This significantly increases your risk for various health conditions. It's highly recommended to consult with a healthcare provider.";
+          } else {
+            category = "Extreme Obesity";
+            bgColor = "#e53935";
+            message =
+              "Your BMI indicates extreme obesity. This greatly increases your risk for serious health conditions. Please consult with a healthcare provider for guidance.";
+          }
+        }
+
+        // Display results
+        bmiValueElement.textContent = bmi.toFixed(1);
+        bmiCategoryElement.textContent = category;
+        bmiCategoryElement.style.backgroundColor = bgColor;
+        bmiCategoryElement.style.color =
+          bgColor === "#ffd54f" ? "#333" : "white";
+        bmiInfoElement.innerHTML = `<p>${message}</p>`;
+
+        // Show result section
+        resultSection.style.display = "block";
+
+        // Scroll to result
+        resultSection.scrollIntoView({ behavior: "smooth" });
+      });
+
+      // Close result section on click outside
+      document.addEventListener("click", (e) => {
+        if (!resultSection.contains(e.target) && !bmiForm.contains(e.target)) {
+          resultSection.style.display = "none";
+        }
+      });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+  </body>
+</html>
